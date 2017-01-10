@@ -1,0 +1,43 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Models
+ *
+ * @ORM\Table(name="models", indexes={@ORM\Index(name="brand_id", columns={"brand_id"})})
+ * @ORM\Entity
+ */
+class Models
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=125, nullable=false)
+     */
+    private $name = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\Brands
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Brands")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     * })
+     */
+    private $brand;
+
+
+}
+

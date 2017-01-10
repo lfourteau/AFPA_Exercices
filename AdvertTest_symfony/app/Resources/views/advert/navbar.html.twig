@@ -1,0 +1,89 @@
+ <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <form class="navbar-form navbar-left" action="{{path('advert_showAdverts')}}" method="get">
+                    <div class="form-group">
+                        {# Onglet recherche par marque #}
+                        <select id="selectedBrand" name="brand_id">
+                        
+                        <option value="" {% if brand_id == false %}selected{% endif %}>---- Brands ----</option>
+                        
+                        {%for brand in brands%}
+                            <option value="{{brand.id}}" {% if brand.id == brand_id %} selected {% endif %} >{{brand.name}} </option>
+                        {% endfor%}
+                        </select>
+                        {# Onglet recherche par modèle #}
+                        {% if   brand_id > -1  %}                
+                        <select id = "modelName" name="model_id">
+                            <option value="" {% if model_id == false %}selected{% endif %}>------- Models -------</option>
+                        {%for model in models%}
+                            <option value="{{model.id}}" {% if model.id == model_id %} selected {% endif %}>{{model.name}} </option>
+                        {% endfor%}
+                        </select>
+                        <select id ="classBy" name ="classBy">
+                            <option value = "0">Trier par</option>
+                            <option value = "1">Date</option>
+                            <option value = "2">Prize</option>                           
+                        </select>
+                        {% endif %} 
+                    </div>
+                </form>
+              <input value ="Add new Advert" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addAdvertModal" >
+            </div>
+        </div>
+    </nav>
+                    
+                    
+<!-- Modal -->
+<div id="addAdvertModal"  class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <h2> Create your new Advert</h2>
+      </div>
+      <div class="modal-body">          
+            
+          
+          {{ form_start(form) }}
+          {{ form_widget(form) }}        
+        <input class="btn btn-primary btn-block" type ="submit" value = "Valid"> </input>
+          {{ form_end(form) }}
+    
+    
+      </div>
+      
+    </div>
+
+  </div>
+</div>  
+ 
+          
+{% block javascripts %}
+    <script>
+        var selectedBrand = document.getElementById('selectedBrand');
+        var selectedModel = document.getElementById('modelName');
+        var classBy = document.getElementById('classBy');
+        
+        
+        selectedBrand.onchange = function()
+        {
+            location.href = "{{path('advert_selectedBrandsAndModels')}}?brand_id=" + this.value;
+        };
+                
+        selectedModel.onchange = function()
+        {   
+            var brandId = selectedBrand.options[selectedBrand.selectedIndex].value;
+            location.href = "{{path('advert_selectedBrandsAndModels')}}?model_id=" + this.value + "&brand_id=" + brandId;
+        };
+        
+        classBy.onchange = function() {
+            var modelId = selectedModel.options[selectedModel.selectedIndex].value;
+            var brandId = selectedBrand.options[selectedBrand.selectedIndex].value;
+            location.href = "{{path('advert_classBy')}}?classValue=" + this.value + "&model_id=" + modelId + "&brand_id=" + brandId;
+        };
+        
+    </script>
+    
+{% endblock %}     

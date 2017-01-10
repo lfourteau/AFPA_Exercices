@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'appBundle/navbar.html.twig' %}
+    
+    {% if adverts != null  %}
+        {% for advert in adverts %}
+            <div class = "advertDiv">
+          {% include 'advert/advertContent.html.twig' %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+

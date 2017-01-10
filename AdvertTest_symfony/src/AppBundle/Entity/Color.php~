@@ -1,0 +1,33 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Color
+ *
+ * @ORM\Table(name="color")
+ * @ORM\Entity
+ */
+class Color
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=11, nullable=false)
+     */
+    private $color;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

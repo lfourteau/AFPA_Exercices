@@ -1,0 +1,102 @@
+/*.editForm {
+    width: 80%;
+    
+}*/
+
+#appbundle_advert {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.editForm, h2 {
+    text-align: center;
+}
+
+   /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    
+    .advertTitle {
+        text-align: center;
+        text-decoration: underline;
+    }
+    
+    #advertInfosFlexDiv {
+       display: flex;
+       justify-content: space-between;
+       
+    }
+
+ .text-center {
+        height:10%;
+    }
+    
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      max-height: 400px !important;
+      min-height: 400px !important;
+      height: 400px !important;
+      margin: auto;
+  }
+ 
+  .test1:hover  {
+      color: dimgrey;     
+  }
+  
+  .test1:focus {
+      color: black;
+  }
+  .test1 {
+      color: black;
+  }
+
+.carousel-inner{
+
+  max-height: 400px !important;
+}
+
+  .col-sm-3 {
+      top:15px;
+  }
+  
+  
+  .advertDiv {
+      margin-top: 15px;
+  }
+/*  
+  .advertDateDiv {
+      margin-top: 50vh;
+      transform: translateY(-50%);
+     
+  }*/
+
+.advertImg{
+    height: 8.7em ; 
+}

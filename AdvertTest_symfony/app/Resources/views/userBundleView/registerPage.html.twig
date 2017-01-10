@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}       
+{% block body %}
+    <div class ="container">
+{{ form_start(userForm) }}
+          {{ form_widget(userForm) }}        
+        <input class="btn btn-primary btn-block" type ="submit" value = "Valid"> </input>
+          {{ form_end(userForm) }}{# empty Twig template #}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+app_advert:
+    resource: "@AppBundle/Resources/config/routing/advert.yml"
+    prefix:   /
+    
+login:
+    path: /login
+    defaults:
+        _controller : UserBundle:Security:login
+        
+login_check:
+    path: /login_check
+    
+logout:
+    path: /logout
+
+inscription:
+    path: /test
+    defaults:
+        _controller: AppBundle:users:loadUserForm
+    
+    

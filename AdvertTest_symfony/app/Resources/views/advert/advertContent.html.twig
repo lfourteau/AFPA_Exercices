@@ -1,0 +1,26 @@
+
+
+<a class ="test1" href = "{{ path('advert_fullPageAdvert', { 'id': advert.id ,'userId': advert.user.id}) }}">
+<div class="row content">
+    <div>
+        <div class="container-fluid text-center">    
+            <div class="col-sm-2 ">      
+                <img class="advertImg" src  = '{{asset ('Images/' ~advert.photo1)}} '></img>
+            </div>
+            <div class="col-sm-10 text-left sidenav"> <h3 class ="advertTitle">{{advert.title}}</h3>
+                <div id ="advertInfosFlexDiv">
+                    <div class ="advertInfos"><h4>Kilometers :</h4> <h5>{{advert.km}}</h5></div>
+                    <div class ="advertInfos"><h4>Construction Year :</h4> <h5>{{advert.years}}</h5></div>
+                    <div class ="advertInfos"><h4>Price :</h4> <h5>{{advert.prices}}</h5></div>
+                    <div class ="advertDateDiv">
+                        <h4>Date de parution :</h4> 
+
+                        <h5>{{advert.date|date('d/m/Y')}}</h5>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</a>

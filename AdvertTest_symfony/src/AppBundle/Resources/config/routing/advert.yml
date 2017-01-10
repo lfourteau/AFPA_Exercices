@@ -1,0 +1,56 @@
+advert_listing:
+    path: /
+    defaults: 
+        _controller: "AppBundle:Advert:advertsFilters"
+        
+advert_showAdverts:
+    path: /showAdverts
+    defaults: 
+        _controller: "AppBundle:Advert:advertsFilters"
+
+advert_selectedBrandsAndModels:
+    path: /BrandsModels
+    defaults: 
+        _controller: "AppBundle:Advert:advertsFilters"
+        
+advert_classBy:
+    path: /classBy
+    defaults:
+        _controller: "AppBundle:Advert:classBy"
+        
+advert_addAdvert:
+    path: /addAdvert
+    defaults:
+        _controller: "AppBundle:Advert:addAdvert"
+        
+advert_createAdvert:
+    path: /createAdvert
+    defaults:
+        _controller: "AppBundle:Advert:addAdvert"
+        
+advert_fullPageAdvert:
+    path: /advertWindow
+    defaults:
+        _controller: "AppBundle:Advert:openAdvertWindow"
+
+
+#Chemins générés suite au CRUD
+advert_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Advert:show" }
+    methods:  GET
+
+advert_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Advert:new" }
+    methods:  [GET, POST]
+
+advert_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Advert:edit" }
+    methods:  [GET, POST]
+
+advert_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Advert:delete" }
+    methods:  [DELETE, GET]
