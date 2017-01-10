@@ -27,6 +27,8 @@ class AdvertType extends AbstractType
                     ->add('Years', IntegerType::class, array('attr' => array('placeholder' => 'Years')))
                     ->add('color', EntityType::class, array('placeholder' => 'Color', 'class' => 'AppBundle:Color'))
                     ->add('Photo1', TextType::class, array('attr' => array('placeholder' => 'Picture')))
+                    ->add('Photo2', TextType::class, array('attr' => array('placeholder' => 'Picture')))
+                    ->add('Photo3', TextType::class, array('attr' => array('placeholder' => 'Picture')))
                     ->add('model', EntityType::class, array('placeholder' => 'Model', 'class' => 'AppBundle:Models'))
                     ->add('department', EntityType::class, array('placeholder' => 'Department', 'class' => 'AppBundle:Departements'))
                     ->add('user', EntityType::class, array('placeholder' => 'User', 'class' => 'AppBundle:users'));

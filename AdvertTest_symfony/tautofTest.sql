@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2016 at 08:52 AM
+-- Generation Time: Nov 28, 2016 at 04:59 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -39,8 +39,8 @@ CREATE TABLE `advert` (
   `years` int(11) NOT NULL,
   `date` date NOT NULL,
   `photo1` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `photo2` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `photo3` varchar(250) COLLATE utf8_unicode_ci NOT NULL
+  `photo2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `photo3` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1588,26 +1588,35 @@ INSERT INTO `regions` (`num_region`, `nom`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cellphone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `salt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
+  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `firstname`, `lastname`, `cellphone`, `phone`, `salt`, `roles`) VALUES
-(1, 'manak', 'lulu', 'lulu@lulu.com', 'Fourteau', 'Lucas', '666666666', '0', '', ''),
-(3, 'Got\'Got', 'golgoth', 'gotgot@gotgot.com', 'Gautier', 'Meheust', '325696589', '200215478', '', ''),
-(4, 'nicoco', 'nicoco', 'nioco@nicoco.fr', 'Nico', 'Len', '066522589', '0551112569', NULL, 'a:1:{i:0;s:9:"ROLE_USER";}'),
-(5, 'lulu', 'lulu', 'lulu@lulu.com', 'lulu', 'lulu', '0225698525', '1564545454', NULL, 'ROLE_USER');
+INSERT INTO `users` (`id`, `nickname`, `password`, `email`, `firstname`, `lastname`, `cellphone`, `phone`) VALUES
+(1, 'manak', 'lulu', 'lulu@lulu.com', 'Fourteau', 'Lucas', '666666666', '0'),
+(2, 'manak', 'lulu', 'lulu@lulu.com', 'Fourteau', 'Lucas', '666666666', '225625689'),
+(3, 'Got\'Got', 'golgoth', 'gotgot@gotgot.com', 'Gautier', 'Meheust', '325696589', '200215478');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userTest`
+--
+
+CREATE TABLE `userTest` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -1661,8 +1670,13 @@ ALTER TABLE `regions`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_1483A5E9F85E0677` (`username`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `userTest`
+--
+ALTER TABLE `userTest`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1697,7 +1711,12 @@ ALTER TABLE `models`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `userTest`
+--
+ALTER TABLE `userTest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --

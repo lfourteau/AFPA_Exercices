@@ -1,10 +1,10 @@
 advert_listing:
-    path: /
+    path: /brands
     defaults: 
         _controller: "AppBundle:Advert:advertsFilters"
         
 advert_showAdverts:
-    path: /showAdverts
+    path: /
     defaults: 
         _controller: "AppBundle:Advert:advertsFilters"
 

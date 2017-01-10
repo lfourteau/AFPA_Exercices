@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Advert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 /**
@@ -119,15 +118,7 @@ class AdvertController extends Controller
         ;
     }
     
-    /**
-
-   * @Security("has_role('ROLE_USER')")
-
-   */
     public function advertsFiltersAction(Request $request) {
-        
-            
-        
         // Réccupération de brand_id depuis l'URL, renvoie "false si non transmis
         $brand_id = $request->get('brand_id');        
         // Réccupération de model_id depuis l'URL, renvoie "false si non transmis

@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * users
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\usersRepository")
  */
-class users implements UserInterface
+class users
 {
     /**
      * @var int
@@ -25,9 +24,9 @@ class users implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @ORM\Column(name="nickname", type="string", length=255)
      */
-    private $username;
+    private $nickname;
 
     /**
      * @var string
@@ -35,8 +34,7 @@ class users implements UserInterface
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-    
-    
+
     /**
      * @var string
      *
@@ -71,20 +69,6 @@ class users implements UserInterface
      * @ORM\Column(name="phone", type="string", length=255)
      */
     private $phone;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
-     */
-    private $salt;
-    
-    /**
-     * @var string
-     * 
-     * @ORM\Column(name="roles", type="array")
-     */
-    private $roles;
 
 
     /**
@@ -98,27 +82,27 @@ class users implements UserInterface
     }
 
     /**
-     * Set username
+     * Set nickname
      *
-     * @param string $username
+     * @param string $nickname
      *
      * @return users
      */
-    public function setUsername($username)
+    public function setNickname($nickname)
     {
-        $this->username = $username;
+        $this->nickname = $nickname;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get nickname
      *
      * @return string
      */
-    public function getUsername()
+    public function getNickname()
     {
-        return $this->username;
+        return $this->nickname;
     }
 
     /**
@@ -266,50 +250,7 @@ class users implements UserInterface
     }
     
      public function __toString(){
-        return $this->username;
+        return $this->nickname;
     }
-
-    /**
-     * Set salt
-     *
-     * @param string $salt
-     *
-     * @return users
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
-    /**
-     * Get salt
-     *
-     * @return string
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-    
-    public function eraseCredentials()
-    {
-
-    }
-    
 }
+
