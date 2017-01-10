@@ -1,3 +1,18 @@
+***AdvertTest***
+===================
+Exercice d'application utilisant le framework symfony pour créer un site d'annonce de voiture simple
+
+# Languages utilisés :
+* HTML/CSS
+* Javascript (manipulation du DOM)
+* PHP
+* Mysql
+
+#Installation
+## Pré-requis
+* SGBD
+* 
+
 ## A faire
 * Importer la base de données tautoTest.sql
 * Modifier les paramètres de connexion de connexion à la bdd dans le fichier app/config/parameters.yml
