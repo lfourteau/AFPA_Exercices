@@ -1,4 +1,5 @@
 ***Jarditou***
+===================
 Exercice sur le CMS prestashop, sujets abordés :
 * Prise en main du back-office
 * Ajout de nouveaux produits et gestion des différentes options associable au produit (promotion, mots-clefs, catégories ...)
