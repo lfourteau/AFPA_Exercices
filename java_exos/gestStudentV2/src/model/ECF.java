@@ -15,15 +15,20 @@ import java.util.ArrayList;
 public class ECF {
     
 private int id;
-private String nom;
+private String ecf_nom;
 int form_id;
 ArrayList<Stagiaire> stagiaires = new ArrayList();
 
-    public ECF(int id, String nom, int form_id) {
+    public ECF(int id, String ecf_nom, int form_id) {
         this.id = id;
-        this.nom = nom;
+        this.ecf_nom = ecf_nom;
         this.form_id = form_id;
     }
+        public ECF(String ecf_nom) {
+        this.ecf_nom = ecf_nom;
+    }
+
+ 
 
     public int getId() {
         return id;
@@ -32,15 +37,6 @@ ArrayList<Stagiaire> stagiaires = new ArrayList();
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public int getForm_id() {
         return form_id;
     }
@@ -48,10 +44,12 @@ ArrayList<Stagiaire> stagiaires = new ArrayList();
     public void setForm_id(int form_id) {
         this.form_id = form_id;
     }
-    
-    
-    
 
+    public String getEcf_nom() {
+        return ecf_nom;
+    }
 
-
+    public void setEcf_nom(String ecf_nom) {
+        this.ecf_nom = ecf_nom;
+    }
 }

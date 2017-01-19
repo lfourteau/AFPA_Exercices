@@ -17,6 +17,7 @@ import model.Stagiaire;
  * @author afpa
  */
 public class StagiaireDAO {
+
     public void insert(Stagiaire s) throws Exception {
         Connection connection = ConnectDB.getConnection();
 

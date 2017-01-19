@@ -20,6 +20,10 @@ public class Resultat {
         this.ecf = ecf;
         this.valid = valid;
     }
+        public Resultat(ECF ecf, Boolean valid) {
+        this.ecf = ecf;
+        this.valid = valid;
+    }
 
     public Boolean getValid() {
         return valid;
