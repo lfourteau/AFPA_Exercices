@@ -6,8 +6,8 @@
 package gestStudent;
 
 import java.util.*;
-import views.Fenetre;
 
+import views.*;
 
 /**
  *
@@ -21,7 +21,9 @@ public class GestStudent {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        Fenetre fen = new Fenetre();
         
+
         System.out.println("1 Créer un nouveau stagiaire");
         System.out.println("2 Voir les notes");
         System.out.println("3 Créer une formation");
@@ -33,12 +35,13 @@ public class GestStudent {
             MainMethodes.createStagiaire();
         }
         if (menu == 2) {
-            Fenetre win = new Fenetre();          
+            MainMethodes.showStagiaireResultat();
         }
-        if (menu == 3) {          
+        if (menu == 3) {
+            MainMethodes.showFormation();
         }
         if (menu == 4) {
-            MainMethodes.showFormation();
+            //voir les formations
         }
     }
 }

@@ -65,12 +65,13 @@ public class MainMethodes {
         System.out.println("Stagiaire ajouté avec succès");
     }
 
-    public static void showStagiaireResultat() {
+  
+    public static void showStagiaireResultat(Stagiaire stag) {
         
 //        System.out.println("Veuillez entrer le nom du stagiaire");
 //        String nom = sc.nextLine();
-        String nom = Fenetre.getFirstname();
-        String prenom = Fenetre.getLastname();
+        String nom = stag.getNom();
+        String prenom = stag.getPrenom();
 
 //        System.out.println("Veuillez entrer le prénom du stagiaire");
 //        String prenom = sc.nextLine();

@@ -9,15 +9,13 @@ import dao.*;
 import java.util.List;
 import java.util.Scanner;
 import model.*;
-import views.Fenetre;
 
 /**
  *
  * @author afpa
  */
 public class MainMethodes {
-
-    static Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);   
     static StagiaireDAO sdao = new StagiaireDAO();
     static FormationDAO fdao = new FormationDAO();
     static ResultatDAO rdao = new ResultatDAO();
@@ -66,14 +64,11 @@ public class MainMethodes {
     }
 
     public static void showStagiaireResultat() {
-        
-//        System.out.println("Veuillez entrer le nom du stagiaire");
-//        String nom = sc.nextLine();
-        String nom = Fenetre.getFirstname();
-        String prenom = Fenetre.getLastname();
+        System.out.println("Veuillez entrer le nom du stagiaire");
+        String nom = sc.nextLine();
 
-//        System.out.println("Veuillez entrer le prénom du stagiaire");
-//        String prenom = sc.nextLine();
+        System.out.println("Veuillez entrer le prénom du stagiaire");
+        String prenom = sc.nextLine();
         Personne p = new Personne(nom, prenom);
 
         List<Resultat> findResultatsBy = rdao.findBy(p);
@@ -121,14 +116,5 @@ public class MainMethodes {
         for (Formation form : findAllFormations) {
             System.out.println(form.getNom() + " " + form.getStagiaires());
         }
-    }
-
-    public static String[] displayFormation() {
-        
-        String formationTab[] = new String[findAllFormations.size()];
-        for (int i = 0; i < formationTab.length; i++) {
-            formationTab[i] = findAllFormations.get(i).getNom();
-        }        
-        return formationTab;
     }
 }

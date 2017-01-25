@@ -5,88 +5,21 @@
  */
 package views;
 
-import gestStudent.MainMethodes;
-import java.awt.Color;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author afpa
  */
-public class Fenetre extends javax.swing.JFrame implements ActionListener {
+public class Fenetre extends javax.swing.JFrame {
 
     /**
-     * Creates new form NewJFrame
+     * Creates new form Fenetre
      */
-    private JPanel windowContainer = new JPanel();
-    String[] formationTab = gestStudent.MainMethodes.displayFormation();
-    private JLabel cboLbl = new JLabel("Choisir une formation");
-    private JComboBox formationCbo = new JComboBox(formationTab);
-    private JLabel firstnameTxtLbl = new JLabel("Veuillez entrer un nom");
-    private JLabel lastnameTxtLbl = new JLabel("Veuillez entrer un prénom");
-    private static JTextField firstnameTxt = new JTextField();
-    private static JTextField lastnameTxt = new JTextField();
-    private JButton btn = new JButton("Valider");
-
     public Fenetre() {
         initComponents();
-        this.setTitle("Welcome");
-        this.setSize(300, 300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         
-        //Menu déroulant
-        JPanel topCboPanel = new JPanel();
-        topCboPanel.add(cboLbl);
-        topCboPanel.add(formationCbo);
         
-        //Champ de saisie nom
-        JPanel topFirstnameTxtPanel = new JPanel();
-        firstnameTxt.setColumns(20);
-        topFirstnameTxtPanel.add(firstnameTxtLbl);
-        topFirstnameTxtPanel.add(firstnameTxt);
-        
-        //Champ de saisie Prenon
-        JPanel topLastnameTxtPanel = new JPanel();
-        lastnameTxt.setColumns(20);
-        topLastnameTxtPanel.add(lastnameTxtLbl);
-        topLastnameTxtPanel.add(lastnameTxt);
-        
-        //Bouton de validation
-        btn.addActionListener(this);
-
-        windowContainer.setBackground(Color.LIGHT_GRAY);
-        windowContainer.setLayout(new BoxLayout(windowContainer, BoxLayout.Y_AXIS));
-        windowContainer.add(topCboPanel);
-        windowContainer.add(topFirstnameTxtPanel);
-        windowContainer.add(topLastnameTxtPanel);
-        windowContainer.add(btn);
-        this.setContentPane(windowContainer);
-        this.setVisible(true);
-
-    }
-
-    public void actionPerformed(ActionEvent arg0) {
-        MainMethodes.showStagiaireResultat();
-    }
-
-    public static String getFirstname() {
-        String nom = firstnameTxt.getText();
-        return nom;
-    }
-
-    public static String getLastname() {
-        String prenom = lastnameTxt.getText();
-        return prenom;
     }
 
     /**
@@ -98,21 +31,56 @@ public class Fenetre extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuPanel = new javax.swing.JPanel();
+        createStagBtn = new javax.swing.JButton();
+        seestagNotesBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        menuPanel.setBackground(new java.awt.Color(244, 244, 232));
+        menuPanel.setToolTipText("");
+
+        createStagBtn.setText("Créer un stagiaire");
+        createStagBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createStagBtnActionPerformed(evt);
+            }
+        });
+        menuPanel.add(createStagBtn);
+
+        seestagNotesBtn.setText("Voir les notes");
+        seestagNotesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seestagNotesBtnActionPerformed(evt);
+            }
+        });
+        menuPanel.add(seestagNotesBtn);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 504, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createStagBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStagBtnActionPerformed
+        
+    }//GEN-LAST:event_createStagBtnActionPerformed
+
+    private void seestagNotesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seestagNotesBtnActionPerformed
+        JOptionPane jop = new JOptionPane();
+        String nom = jop.showInputDialog(null, "Veuillez entrer le nom !", JOptionPane.QUESTION_MESSAGE);
+        String prenom = jop.showInputDialog(null, "Veuillez entrer le prenom !", JOptionPane.QUESTION_MESSAGE);
+    }//GEN-LAST:event_seestagNotesBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,9 +108,6 @@ public class Fenetre extends javax.swing.JFrame implements ActionListener {
             java.util.logging.Logger.getLogger(Fenetre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -153,5 +118,8 @@ public class Fenetre extends javax.swing.JFrame implements ActionListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createStagBtn;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton seestagNotesBtn;
     // End of variables declaration//GEN-END:variables
 }
