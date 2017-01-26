@@ -90,8 +90,9 @@ public class AddFormationDlg extends javax.swing.JDialog {
             //Inser la Formation en BDD
             FormationDAO.insert(f);
             //Permet de fermer la JDialog en retournant à la fenêtre précédente
-            java.awt.Toolkit.getDefaultToolkit().beep();            
-            this.dispose();
+            java.awt.Toolkit.getDefaultToolkit().beep();
+            Window window = SwingUtilities.windowForComponent((Component) evt.getSource());
+            window.dispose();
             //Met à jour la liste de formation au besoin
             parent.getFormationTable().addFormation(f);
         } catch (Exception ex) {

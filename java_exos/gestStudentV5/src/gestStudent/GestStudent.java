@@ -26,8 +26,9 @@ public class GestStudent {
         
        Fenetre win = new Fenetre();
        win.setVisible(true);
-       win.formContentPnl.setVisible(false);
-       win.stagContentPnl.setVisible(false);
+       
+      
+       
        
         
     }

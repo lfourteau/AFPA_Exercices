@@ -38,17 +38,17 @@ public class Fenetre extends javax.swing.JFrame {
 
         JFrameTabPane = new javax.swing.JTabbedPane();
         JFrameStagPnl = new javax.swing.JPanel();
-        stagMenuPnl = new javax.swing.JPanel();
+        StagMenuPnl = new javax.swing.JPanel();
         showStagiaireListTglBtn = new javax.swing.JToggleButton();
         addStagButton = new javax.swing.JButton();
-        stagContentPnl = new javax.swing.JPanel();
-        JScrollPane1 = new javax.swing.JScrollPane();
-        stagiaireListTbl = new javax.swing.JTable();
+        StagContentPnl = new javax.swing.JPanel();
+        StagTblSPane = new javax.swing.JScrollPane();
+        StagiaireListTbl = new javax.swing.JTable();
         JFrameFormPnl = new javax.swing.JPanel();
-        formMenuPnl = new javax.swing.JPanel();
+        FormMenuPnl = new javax.swing.JPanel();
         showListformationTglBtn = new javax.swing.JToggleButton();
         addFormButton = new javax.swing.JButton();
-        formContentPnl = new javax.swing.JPanel();
+        FormContentPnl = new javax.swing.JPanel();
         formationListScrPane = new javax.swing.JScrollPane();
         FormationListTbl = new javax.swing.JTable();
         JFrameMenu = new javax.swing.JMenuBar();
@@ -58,15 +58,8 @@ public class Fenetre extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestStudent");
-        setMinimumSize(new java.awt.Dimension(500, 500));
 
-        JFrameTabPane.setPreferredSize(new java.awt.Dimension(1000, 700));
-
-        JFrameStagPnl.setPreferredSize(new java.awt.Dimension(1000, 700));
         JFrameStagPnl.setLayout(new javax.swing.BoxLayout(JFrameStagPnl, javax.swing.BoxLayout.PAGE_AXIS));
-
-        stagMenuPnl.setFocusTraversalPolicyProvider(true);
-        stagMenuPnl.setPreferredSize(new java.awt.Dimension(1000, 30));
 
         showStagiaireListTglBtn.setText("Afficher la liste des stagiaires");
         showStagiaireListTglBtn.addItemListener(new java.awt.event.ItemListener() {
@@ -82,57 +75,47 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout stagMenuPnlLayout = new javax.swing.GroupLayout(stagMenuPnl);
-        stagMenuPnl.setLayout(stagMenuPnlLayout);
-        stagMenuPnlLayout.setHorizontalGroup(
-            stagMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(stagMenuPnlLayout.createSequentialGroup()
-                .addComponent(showStagiaireListTglBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout StagMenuPnlLayout = new javax.swing.GroupLayout(StagMenuPnl);
+        StagMenuPnl.setLayout(StagMenuPnlLayout);
+        StagMenuPnlLayout.setHorizontalGroup(
+            StagMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StagMenuPnlLayout.createSequentialGroup()
+                .addComponent(showStagiaireListTglBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(addStagButton, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(addStagButton, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        stagMenuPnlLayout.setVerticalGroup(
-            stagMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        StagMenuPnlLayout.setVerticalGroup(
+            StagMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(showStagiaireListTglBtn)
             .addComponent(addStagButton)
         );
 
-        JFrameStagPnl.add(stagMenuPnl);
+        JFrameStagPnl.add(StagMenuPnl);
 
-        stagContentPnl.setPreferredSize(new java.awt.Dimension(1000, 700));
+        StagiaireListTbl.setModel(stagiaireTable);
+        StagTblSPane.setViewportView(StagiaireListTbl);
 
-        stagiaireListTbl.setModel(stagiaireTable);
-        JScrollPane1.setViewportView(stagiaireListTbl);
-
-        javax.swing.GroupLayout stagContentPnlLayout = new javax.swing.GroupLayout(stagContentPnl);
-        stagContentPnl.setLayout(stagContentPnlLayout);
-        stagContentPnlLayout.setHorizontalGroup(
-            stagContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1009, Short.MAX_VALUE)
-            .addGroup(stagContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(JScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE))
+        javax.swing.GroupLayout StagContentPnlLayout = new javax.swing.GroupLayout(StagContentPnl);
+        StagContentPnl.setLayout(StagContentPnlLayout);
+        StagContentPnlLayout.setHorizontalGroup(
+            StagContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(StagTblSPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
         );
-        stagContentPnlLayout.setVerticalGroup(
-            stagContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 662, Short.MAX_VALUE)
-            .addGroup(stagContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(stagContentPnlLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(JScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        StagContentPnlLayout.setVerticalGroup(
+            StagContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StagContentPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(StagTblSPane, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
-        JFrameStagPnl.add(stagContentPnl);
+        JFrameStagPnl.add(StagContentPnl);
 
         JFrameTabPane.addTab("Stagiaires", JFrameStagPnl);
 
-        JFrameFormPnl.setPreferredSize(new java.awt.Dimension(1000, 700));
         JFrameFormPnl.setLayout(new javax.swing.BoxLayout(JFrameFormPnl, javax.swing.BoxLayout.Y_AXIS));
 
-        formMenuPnl.setMinimumSize(new java.awt.Dimension(1000, 30));
-
         showListformationTglBtn.setText("Afficher la liste des formations");
-        showListformationTglBtn.setPreferredSize(new java.awt.Dimension(50, 50));
         showListformationTglBtn.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 showListformationTglBtnItemStateChanged(evt);
@@ -146,42 +129,45 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout formMenuPnlLayout = new javax.swing.GroupLayout(formMenuPnl);
-        formMenuPnl.setLayout(formMenuPnlLayout);
-        formMenuPnlLayout.setHorizontalGroup(
-            formMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formMenuPnlLayout.createSequentialGroup()
-                .addComponent(showListformationTglBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout FormMenuPnlLayout = new javax.swing.GroupLayout(FormMenuPnl);
+        FormMenuPnl.setLayout(FormMenuPnlLayout);
+        FormMenuPnlLayout.setHorizontalGroup(
+            FormMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FormMenuPnlLayout.createSequentialGroup()
+                .addComponent(showListformationTglBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(addFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(addFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        formMenuPnlLayout.setVerticalGroup(
-            formMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        FormMenuPnlLayout.setVerticalGroup(
+            FormMenuPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(showListformationTglBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(addFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        JFrameFormPnl.add(formMenuPnl);
-
-        formContentPnl.setPreferredSize(new java.awt.Dimension(1000, 700));
+        JFrameFormPnl.add(FormMenuPnl);
 
         FormationListTbl.setModel(formationTable);
         formationListScrPane.setViewportView(FormationListTbl);
 
-        javax.swing.GroupLayout formContentPnlLayout = new javax.swing.GroupLayout(formContentPnl);
-        formContentPnl.setLayout(formContentPnlLayout);
-        formContentPnlLayout.setHorizontalGroup(
-            formContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formationListScrPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
+        javax.swing.GroupLayout FormContentPnlLayout = new javax.swing.GroupLayout(FormContentPnl);
+        FormContentPnl.setLayout(FormContentPnlLayout);
+        FormContentPnlLayout.setHorizontalGroup(
+            FormContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1038, Short.MAX_VALUE)
+            .addGroup(FormContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(formationListScrPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE))
         );
-        formContentPnlLayout.setVerticalGroup(
-            formContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formContentPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formationListScrPane, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
+        FormContentPnlLayout.setVerticalGroup(
+            FormContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 706, Short.MAX_VALUE)
+            .addGroup(FormContentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FormContentPnlLayout.createSequentialGroup()
+                    .addContainerGap(43, Short.MAX_VALUE)
+                    .addComponent(formationListScrPane, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(43, Short.MAX_VALUE)))
         );
 
-        JFrameFormPnl.add(formContentPnl);
+        JFrameFormPnl.add(FormContentPnl);
 
         JFrameTabPane.addTab("Formations", JFrameFormPnl);
 
@@ -209,17 +195,17 @@ public class Fenetre extends javax.swing.JFrame {
     private void showListformationTglBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showListformationTglBtnItemStateChanged
         
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            formContentPnl.setVisible(true);       
+            FormContentPnl.setVisible(true);       
         } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
-            formContentPnl.setVisible(false);           
+            FormContentPnl.setVisible(false);           
         }
     }//GEN-LAST:event_showListformationTglBtnItemStateChanged
 
     private void showStagiaireListTglBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_showStagiaireListTglBtnItemStateChanged
        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            stagContentPnl.setVisible(true);       
+            StagContentPnl.setVisible(true);       
         } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
-            stagContentPnl.setVisible(false);           
+            StagContentPnl.setVisible(false);           
         }
      
     }//GEN-LAST:event_showStagiaireListTglBtnItemStateChanged
@@ -274,24 +260,24 @@ public class Fenetre extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel FormContentPnl;
+    private javax.swing.JPanel FormMenuPnl;
     public javax.swing.JTable FormationListTbl;
     public javax.swing.JPanel JFrameFormPnl;
     private javax.swing.JMenuBar JFrameMenu;
     public javax.swing.JPanel JFrameStagPnl;
     private javax.swing.JTabbedPane JFrameTabPane;
-    private javax.swing.JScrollPane JScrollPane1;
     private javax.swing.JMenu MenuEdit;
     private javax.swing.JMenu MenuFAQ;
     private javax.swing.JMenu MenuFile;
+    public javax.swing.JPanel StagContentPnl;
+    private javax.swing.JPanel StagMenuPnl;
+    private javax.swing.JScrollPane StagTblSPane;
+    private javax.swing.JTable StagiaireListTbl;
     private javax.swing.JButton addFormButton;
     private javax.swing.JButton addStagButton;
-    public javax.swing.JPanel formContentPnl;
-    private javax.swing.JPanel formMenuPnl;
     private javax.swing.JScrollPane formationListScrPane;
     private javax.swing.JToggleButton showListformationTglBtn;
     private javax.swing.JToggleButton showStagiaireListTglBtn;
-    public javax.swing.JPanel stagContentPnl;
-    private javax.swing.JPanel stagMenuPnl;
-    private javax.swing.JTable stagiaireListTbl;
     // End of variables declaration//GEN-END:variables
 }

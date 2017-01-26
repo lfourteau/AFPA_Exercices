@@ -66,8 +66,9 @@ public class MainMethodes {
         System.out.println("Stagiaire ajouté avec succès");
     }
 
+  
     public static void showStagiaireResultat(Stagiaire stag) {
-
+        
 //        System.out.println("Veuillez entrer le nom du stagiaire");
 //        String nom = sc.nextLine();
         String nom = stag.getNom();
@@ -125,11 +126,16 @@ public class MainMethodes {
     }
 
     public static String[] displayFormation() {
-
+        
         String formCbLst[] = new String[findAllFormations.size()];
         for (int i = 0; i < formCbLst.length; i++) {
             formCbLst[i] = findAllFormations.get(i).getNom();
-        }
+        }        
         return formCbLst;
     }
+    public static JButton test() {
+        JButton btn = new JButton("Afficher les notes");        
+        return btn;
+    }
+    
 }

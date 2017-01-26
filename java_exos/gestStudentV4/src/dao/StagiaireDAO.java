@@ -56,7 +56,7 @@ public class StagiaireDAO {
         return stagiaires;
     }
 
-    public static void insert(Stagiaire s) throws Exception {
+    public void insert(Stagiaire s) throws Exception {
         Connection connection = ConnectDB.getConnection();
 
         PreparedStatement stmCreatePersonne;

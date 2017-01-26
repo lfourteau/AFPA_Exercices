@@ -65,32 +65,32 @@ public class MainMethodes {
 
         System.out.println("Stagiaire ajouté avec succès");
     }
-
-    public static void showStagiaireResultat(Stagiaire stag) {
+//
+//    public static void showStagiaireResultat(Stagiaire stag) {
 
 //        System.out.println("Veuillez entrer le nom du stagiaire");
 //        String nom = sc.nextLine();
-        String nom = stag.getNom();
-        String prenom = stag.getPrenom();
+//        String nom = stag.getNom();
+//        String prenom = stag.getPrenom();
 
 //        System.out.println("Veuillez entrer le prénom du stagiaire");
 //        String prenom = sc.nextLine();
-        Personne p = new Personne(nom, prenom);
+//        Personne p = new Personne(nom, prenom);
 
-        List<Resultat> findResultatsBy = rdao.findBy(p);
+//        List<Resultat> findResultatsBy = rdao.findBy(s);
 
-        System.out.println("ECF de " + prenom + " " + nom);
+//        System.out.println("ECF de " + prenom + " " + nom);
 
-        for (Resultat result : findResultatsBy) {
-            String resultName = null;
-            if (result.getValid() == true) {
-                resultName = "Validé";
-            } else {
-                resultName = "Non validé";
-            }
-            System.out.println(result.getEcf().getEcf_nom() + " " + resultName);
-        }
-    }
+//        for (Resultat result : findResultatsBy) {
+//            String resultName = null;
+//            if (result.getValid() == true) {
+//                resultName = "Validé";
+//            } else {
+//                resultName = "Non validé";
+//            }
+//            System.out.println(result.getEcf().getEcf_nom() + " " + resultName);
+//        }
+//    }
 
     public static String matricule() {
 

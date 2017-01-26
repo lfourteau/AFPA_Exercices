@@ -32,7 +32,7 @@ public class StagiaireDAO {
         try {
             stm = connection.createStatement();
 
-            String sql = "select s.matricule, p.nom, p.prenom, f.nom as nomFormation from stagiaire s inner join personne p on s.pers_id = p.id inner join formation f on s.form_id = f.id";
+            String sql = "select s.matricule, p.id as persID, p.nom, p.prenom, f.id, f.nom as nomFormation from stagiaire s inner join personne p on s.pers_id = p.id inner join formation f on s.form_id = f.id";
             ResultSet rs = stm.executeQuery(sql);
 
             while (rs.next()) {
@@ -40,10 +40,12 @@ public class StagiaireDAO {
                 String nom = rs.getString("nom");
                 String prenom = rs.getString("prenom");
                 String nomFormation = rs.getString("nomFormation");
+                int id = rs.getInt("id");
+                int persID = rs.getInt("persID");
                 
-                Formation f = new Formation(nomFormation);
+                Formation f = new Formation(id, nomFormation);
 
-                Stagiaire s = new Stagiaire(matricule, nom, prenom, f);
+                Stagiaire s = new Stagiaire(matricule, persID, nom, prenom, f);
 
                 stagiaires.add(s);
 
@@ -90,6 +92,37 @@ public class StagiaireDAO {
             //pb if here
             connection.rollback();
             throw new Exception("error while creating personne " + e.getMessage());
+        }
+
+    }
+    public static void update(Stagiaire s) throws Exception {
+        Connection connection = ConnectDB.getConnection();
+
+        PreparedStatement stmUpdatePersonne;
+        PreparedStatement stmUpdateStagiaire;
+
+        try {
+            connection.setAutoCommit(false);
+            stmUpdatePersonne = connection.prepareStatement("UPDATE personne set nom = ?, prenom = ? where id = ?", Statement.RETURN_GENERATED_KEYS);
+            stmUpdatePersonne.setString(1, s.getNom());
+            stmUpdatePersonne.setString(2, s.getPrenom());
+            stmUpdatePersonne.setInt(3, s.getId());
+            stmUpdatePersonne.execute();            
+
+            stmUpdateStagiaire = connection.prepareStatement("UPDATE stagiaire set form_id = ? where pers_id = ?");
+            stmUpdateStagiaire.setInt(1, s.getForm().getId());
+            stmUpdateStagiaire.setInt(2, s.getId());
+            
+            stmUpdateStagiaire.execute();
+
+            connection.commit();
+            stmUpdatePersonne.close();
+            stmUpdateStagiaire.close();
+
+        } catch (SQLException e) {
+            //pb if here
+            connection.rollback();
+            throw new Exception("error while updating personne " + e.getMessage());
         }
 
     }

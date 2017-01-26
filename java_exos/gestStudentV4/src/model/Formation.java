@@ -58,12 +58,5 @@ public class Formation {
     public void setStagiaires(ArrayList<Stagiaire> stagiaires) {
         this.stagiaires = stagiaires;
     }  
-
-    @Override
-    public String toString() {
-        return nom;
-    }
-    
-    
     
 }

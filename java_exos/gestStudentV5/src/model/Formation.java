@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
  
 /**
@@ -62,8 +63,31 @@ public class Formation {
     @Override
     public String toString() {
         return nom;
+    }   
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Formation other = (Formation) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
     
     
 }
