@@ -24,6 +24,7 @@ public class StagiaireTable extends AbstractTableModel {
     public void addStagiaire(Stagiaire stagiaire) {
         stagiaires.add(stagiaire);
         this.fireTableDataChanged();
+
     }
 
     @Override

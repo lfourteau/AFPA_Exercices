@@ -26,6 +26,7 @@ public class GestStudent {
         
        Fenetre win = new Fenetre();
        win.setVisible(true);
+       win.succeedActionsLbl.setVisible(false);
        
       
        
