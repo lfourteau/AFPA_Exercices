@@ -6,19 +6,24 @@
 package views;
 
 import dao.FormationDAO;
+import dao.PersonneDAO;
 import dao.ResultatDAO;
 import dao.StagiaireDAO;
 import gestStudent.MainMethodes;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.Formation;
+import model.Personne;
 import model.Stagiaire;
 
 /**
@@ -33,6 +38,8 @@ public class Fenetre extends javax.swing.JFrame {
     FormationTable formationTable = new FormationTable(FormationDAO.findAll());
     StagiaireTable stagiaireTable;
     ResultatTable resultatTable = new ResultatTable(new ArrayList());
+    Stagiaire selectedStag = null;
+    Timer t;
 
     /**
      * Creates new form NewJFrame
@@ -44,13 +51,30 @@ public class Fenetre extends javax.swing.JFrame {
         for (Formation form : formations) {
             FormationListAddCbbox.addItem(form);
         }
+        t = new Timer(3000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                succeedActionsLbl.setText(null);
+            }
+        });
 
         //Ajout d'un ecouteur pour détecter le clic sur le tableau de stagiaire
         stagListTbl.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent evt) {
                 if (!evt.getValueIsAdjusting()) {
-                    tblStagValueChanged(evt);
+                    //En cas de suppression, déselection dans le tableau donc  row = -1 : impossible de lancer tblStagValueChanged();
+                    if (stagListTbl.getSelectedRow() > -1) {
+                        tblStagValueChanged(evt);
+                        NomStagEditFieldTxt.setEditable(true);
+                        PrenomStagEditFieldTxt.setEditable(true);
+                        FormationListEditCbbox.setEditable(true);
+                    } else {
+                        NomStagEditFieldTxt.setEditable(false);
+                        PrenomStagEditFieldTxt.setEditable(false);
+                        FormationListEditCbbox.setEditable(false);
+                    }
                 }
             }
         });
@@ -95,8 +119,9 @@ public class Fenetre extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         FormationListEditLbl = new javax.swing.JLabel();
         FormationListEditCbbox = new javax.swing.JComboBox<>();
-        jPanel8 = new javax.swing.JPanel();
+        stagEditValidDelPnl = new javax.swing.JPanel();
         stagValidEditBtn = new javax.swing.JButton();
+        stagDelBtn = new javax.swing.JLabel(new ImageIcon("img/trash.png"));
         jPanel9 = new javax.swing.JPanel();
         stagNotesPnl = new javax.swing.JPanel();
         stagNomResultsLbl = new javax.swing.JLabel();
@@ -301,7 +326,7 @@ public class Fenetre extends javax.swing.JFrame {
 
         stagAddEditTabPane.addTab("Ajouter", stagAddFieldPnl);
 
-        stagEditFieldPnl.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        stagEditFieldPnl.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18)));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -374,73 +399,63 @@ public class Fenetre extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        stagEditValidDelPnl.setLayout(new java.awt.BorderLayout());
+
         stagValidEditBtn.setText("Valider");
         stagValidEditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stagValidEditBtnActionPerformed(evt);
             }
         });
+        stagEditValidDelPnl.add(stagValidEditBtn, java.awt.BorderLayout.WEST);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(stagValidEditBtn)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 29, Short.MAX_VALUE)
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(stagValidEditBtn)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        stagDelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        stagDelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stagDelBtnMouseClicked(evt);
+            }
+        });
+        stagEditValidDelPnl.add(stagDelBtn, java.awt.BorderLayout.EAST);
 
         javax.swing.GroupLayout stagEditFieldPnlLayout = new javax.swing.GroupLayout(stagEditFieldPnl);
         stagEditFieldPnl.setLayout(stagEditFieldPnlLayout);
         stagEditFieldPnlLayout.setHorizontalGroup(
             stagEditFieldPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
-            .addGroup(stagEditFieldPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(stagEditFieldPnlLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(stagEditFieldPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(NomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(PrenomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(FormationListEditCbbox, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(stagEditFieldPnlLayout.createSequentialGroup()
+                .addGap(0, 134, Short.MAX_VALUE)
+                .addGroup(stagEditFieldPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrenomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FormationListEditCbbox, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stagEditValidDelPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 134, Short.MAX_VALUE))
         );
         stagEditFieldPnlLayout.setVerticalGroup(
             stagEditFieldPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
-            .addGroup(stagEditFieldPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(stagEditFieldPnlLayout.createSequentialGroup()
-                    .addGap(0, 31, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(NomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(PrenomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(FormationListEditCbbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 31, Short.MAX_VALUE)))
+            .addGroup(stagEditFieldPnlLayout.createSequentialGroup()
+                .addGap(0, 46, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(NomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(PrenomStagEditFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(FormationListEditCbbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(stagEditValidDelPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 46, Short.MAX_VALUE))
         );
+
+        NomStagEditFieldTxt.setEditable(false);
+        PrenomStagEditFieldTxt.setEditable(false);
+        FormationListEditCbbox.setEditable(false);
 
         stagAddEditTabPane.addTab("Editer", stagEditFieldPnl);
 
@@ -572,28 +587,29 @@ public class Fenetre extends javax.swing.JFrame {
     //Permet la réccupération de la ligne selectionnée dans le tableau et donc du stagiaire correspondant à celle-ci
     private void tblStagValueChanged(ListSelectionEvent evt) {
 
-        int tableRow = stagListTbl.getSelectedRow();                                                            //reccupère la ligne selectonnée dans le tableau
-        Stagiaire stag = stagiaireTable.getStagiaire(tableRow);                                              //Retrouyve le stagiaire de la ligne selectionnée
-        resultatTable.setResultatList(ResultatDAO.findBy(stag));                                            //Affiche le tableau des notes
-        //MAJ du nom du stagiaire
-        stagNomResultsLbl.setText("Notes de : " + stag.getNom() + " " + stag.getPrenom());
-        NomStagEditFieldTxt.setText(stag.getNom());
-        PrenomStagEditFieldTxt.setText(stag.getPrenom());
+        stagAddEditTabPane.setSelectedIndex(1);                                                                 //permet d'ouvrir l'onglet "Editer"
 
-        Formation stagFormation = stag.getForm();                                                              //Reccupère la formation du stagiaire
+        int tableRow = stagListTbl.getSelectedRow();                                                            //reccupère la ligne selectonnée dans le tableau
+        selectedStag = stagiaireTable.getStagiaire(tableRow);                                              //Retrouyve le stagiaire de la ligne selectionnée
+        resultatTable.setResultatList(ResultatDAO.findBy(selectedStag));                                            //Affiche le tableau des notes
+        //MAJ du nom du stagiaire
+        stagNomResultsLbl.setText("Notes de : " + selectedStag.getNom() + " " + selectedStag.getPrenom());
+        NomStagEditFieldTxt.setText(selectedStag.getNom());
+        PrenomStagEditFieldTxt.setText(selectedStag.getPrenom());
+
+        Formation stagFormation = selectedStag.getForm();                                                              //Reccupère la formation du stagiaire
         List<Formation> formations = FormationDAO.findAll();                                             //Affiche la liste de formations
 
         FormationListEditCbbox.removeAllItems();                                                                //Clear la ComboBox
-        FormationListEditCbbox.addItem(stagFormation);
+        //Affiche la liste des formations dans la ComboBox
         for (Formation form : formations) {
-            if (!form.equals(stagFormation)) {
-                FormationListEditCbbox.addItem(form);
-            }
+            FormationListEditCbbox.addItem(form);
         }
-//        resultatTable.fireTableDataChanged();
-
+        //Indique la formation du stagiaire sélectionné en premier
+        FormationListEditCbbox.setSelectedItem(stagFormation);
     }
 
+    //Insert un nouveau stagiaire en BDD
     private void stagValidAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stagValidAddBtnActionPerformed
         prenomStag = PrenomStagAddFieldTxt.getText();
         nomStag = NomStagAddFieldTxt.getText();
@@ -603,52 +619,70 @@ public class Fenetre extends javax.swing.JFrame {
         try {
             StagiaireDAO.insert(stagiaire);
             NomStagAddFieldTxt.setText(null);
-            PrenomStagAddFieldTxt.setText(null);            
-            displaySucceedActionsLbltimer();
+            PrenomStagAddFieldTxt.setText(null);
+            succeedActionsLbl.setText("Stagiaire ajouté avec succès");
+            displayActionsLbltimer();
             stagiaireTable.addStagiaire(stagiaire);
         } catch (Exception ex) {
             Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_stagValidAddBtnActionPerformed
 
-    protected void displaySucceedActionsLbltimer() {
-
-        succeedActionsLbl.setVisible(true);
-        succeedActionsLbl.setText("Stagiaire ajouté avec succès");
-        Timer t = new Timer(5000, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                succeedActionsLbl.setText(null);
-            }
-        });
-        t.setRepeats(false);
-        t.start();
+    //Permet d'afficher un message de succès pendant 5 secondes
+    protected void displayActionsLbltimer() {
+        System.out.println(t.isRunning());
+        
+            succeedActionsLbl.setVisible(true);
+            t.start();
+        
     }
+
+    private void FormationListAddCbboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormationListAddCbboxActionPerformed
+
+    }//GEN-LAST:event_FormationListAddCbboxActionPerformed
+
+    private void stagDelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stagDelBtnMouseClicked
+
+        int pers_id = selectedStag.getId();
+        Personne p = new Personne(pers_id);
+        Stagiaire stagiaire = new Stagiaire(selectedStag.getMatricule(), selectedStag.getNom(), selectedStag.getPrenom(), selectedStag.getForm());
+        try {
+            PersonneDAO.delete(p);
+            NomStagEditFieldTxt.setText(null);
+            PrenomStagEditFieldTxt.setText(null);
+            FormationListEditCbbox.removeAllItems();
+            System.out.println(stagiaireTable.getRowCount());
+            stagiaireTable.removeStagiaire(stagiaire);
+            System.out.println(stagiaireTable.getRowCount());
+            succeedActionsLbl.setText("Stagiaire supprimé avec succès");
+            displayActionsLbltimer();
+        } catch (Exception ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_stagDelBtnMouseClicked
 
     private void stagValidEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stagValidEditBtnActionPerformed
         prenomStag = PrenomStagEditFieldTxt.getText();
         nomStag = NomStagEditFieldTxt.getText();
-        int tableRow = stagListTbl.getSelectedRow();
-        Stagiaire stag = stagiaireTable.getStagiaire(tableRow);
+
         formationStagiaire = (Formation) FormationListEditCbbox.getSelectedItem();
 
-        Stagiaire stagiaire = new Stagiaire(stag.getId(), nomStag, prenomStag, formationStagiaire);
+        Stagiaire Stag = new Stagiaire(selectedStag.getMatricule(), selectedStag.getId(), nomStag, prenomStag, formationStagiaire);
 
         try {
-            StagiaireDAO.update(stagiaire);
+            StagiaireDAO.update(Stag);
             NomStagEditFieldTxt.setText(null);
             PrenomStagEditFieldTxt.setText(null);
             FormationListEditCbbox.removeAllItems();
+            stagiaireTable.removeStagiaire(selectedStag);
+            stagiaireTable.addStagiaire(Stag);
+            succeedActionsLbl.setText("Information du stagiaire mises à jour ave succès");
+            displayActionsLbltimer();
+
         } catch (Exception ex) {
             Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_stagValidEditBtnActionPerformed
-
-    private void FormationListAddCbboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormationListAddCbboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FormationListAddCbboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -732,12 +766,13 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane stagAddEditTabPane;
     private javax.swing.JPanel stagAddFieldPnl;
+    private javax.swing.JLabel stagDelBtn;
     private javax.swing.JPanel stagEditFieldPnl;
+    private javax.swing.JPanel stagEditValidDelPnl;
     private javax.swing.JPanel stagInfosPnl;
     private javax.swing.JLabel stagListLbl;
     private javax.swing.JPanel stagListPnl;

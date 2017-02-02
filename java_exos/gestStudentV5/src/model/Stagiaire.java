@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -64,4 +65,30 @@ public class Stagiaire extends Personne {                                       
     public void setForm(Formation form) {
         this.form = form;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.matricule);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Stagiaire other = (Stagiaire) obj;
+        if (!Objects.equals(this.matricule, other.matricule)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

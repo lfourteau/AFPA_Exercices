@@ -25,6 +25,9 @@ public class Personne {
         this.nom = nom;
         this.prenom = prenom;
     }
+    public Personne(int id) {
+        this.id = id;
+    }
     
     public int getId() {
         return id;

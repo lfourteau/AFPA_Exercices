@@ -404,14 +404,13 @@
                     </Container>
                     <Container class="javax.swing.JPanel" name="stagEditFieldPnl">
                       <Properties>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder justification="2" title="Editer">
-                              <Font PropertyName="font" name="Dialog" size="18" style="0"/>
-                            </TitledBorder>
-                          </Border>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="javax.swing.BorderFactory.createTitledBorder(null, &quot;Editer&quot;, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font(&quot;Dialog&quot;, 0, 18))" type="code"/>
                         </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="NomStagEditFieldTxt.setEditable(false);&#xa;PrenomStagEditFieldTxt.setEditable(false);&#xa;FormationListEditCbbox.setEditable(false);"/>
+                      </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                           <JTabbedPaneConstraints tabName="Editer">
@@ -423,45 +422,39 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="634" max="32767" attributes="0"/>
-                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="NomStagEditFieldTxt" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
-                                          <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="PrenomStagEditFieldTxt" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
-                                          <Component id="jPanel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="FormationListEditCbbox" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
-                                          <Component id="jPanel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="NomStagEditFieldTxt" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
+                                      <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="PrenomStagEditFieldTxt" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
+                                      <Component id="jPanel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="FormationListEditCbbox" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
+                                      <Component id="stagEditValidDelPnl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
-                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
-                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="NomStagEditFieldTxt" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="PrenomStagEditFieldTxt" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="FormationListEditCbbox" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
+                                  <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="NomStagEditFieldTxt" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="PrenomStagEditFieldTxt" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="FormationListEditCbbox" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="stagEditValidDelPnl" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -591,34 +584,9 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Formation&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Container class="javax.swing.JPanel" name="jPanel8">
+                        <Container class="javax.swing.JPanel" name="stagEditValidDelPnl">
 
-                          <Layout>
-                            <DimensionLayout dim="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="376" max="32767" attributes="0"/>
-                                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="stagValidEditBtn" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                            <DimensionLayout dim="1">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
-                                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="stagValidEditBtn" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                          </Layout>
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="stagValidEditBtn">
                               <Properties>
@@ -627,6 +595,29 @@
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stagValidEditBtnActionPerformed"/>
                               </Events>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                                  <BorderConstraints direction="West"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="stagDelBtn">
+                              <Properties>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Curseur en forme de main"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stagDelBtnMouseClicked"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(new ImageIcon(&quot;img/trash.png&quot;))"/>
+                              </AuxValues>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                                  <BorderConstraints direction="East"/>
+                                </Constraint>
+                              </Constraints>
                             </Component>
                           </SubComponents>
                         </Container>

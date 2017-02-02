@@ -24,9 +24,12 @@ public class StagiaireTable extends AbstractTableModel {
     public void addStagiaire(Stagiaire stagiaire) {
         stagiaires.add(stagiaire);
         this.fireTableDataChanged();
-
     }
-
+    public void removeStagiaire(Stagiaire stagiaire) {
+        stagiaires.remove(stagiaire);
+        this.fireTableDataChanged();
+    }
+    
     @Override
     public String getColumnName(int column) {
         return entetes[column];

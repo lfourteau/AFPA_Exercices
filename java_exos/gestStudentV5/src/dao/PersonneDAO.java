@@ -6,6 +6,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,11 +52,24 @@ public class PersonneDAO {
         return personnes;
     }
 
-    
-    
-    
-    
-    
+    public static void delete(Personne p) throws Exception {
+        Connection connection = ConnectDB.getConnection();
+
+        PreparedStatement stmDeletePersonne;
+
+
+        try {
+            connection.setAutoCommit(false);
+            stmDeletePersonne = connection.prepareStatement("DELETE FROM personne WHERE id = ?;");
+            stmDeletePersonne.setInt(1, p.getId());            
+            stmDeletePersonne.execute();
+            connection.commit();
+            stmDeletePersonne.close();
+        } catch (SQLException e) {
+            //pb if here
+            connection.rollback();
+            throw new Exception("error while deleting personne " + e.getMessage());
+        }
+    }
+
 }
-
-
