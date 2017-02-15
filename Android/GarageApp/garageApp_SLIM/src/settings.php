@@ -21,7 +21,8 @@ return [
             "host" => "127.0.0.1",
             "dbname" => "garageApp",
             "user" => "root",
-            "pass" => "lulastar37"
+            "pass" => "lulastar37",
+            "charset" => "utf8"
         ],
     ],
 ];

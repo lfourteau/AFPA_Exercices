@@ -1,7 +1,10 @@
-package com.example.afpa.garageapp;
+package com.example.afpa.garageapp.database;
 
 import android.os.AsyncTask;
 
+import com.example.afpa.garageapp.MainActivityFragment;
+import com.example.afpa.garageapp.ReviewsPage;
+import com.example.afpa.garageapp.model.Avis;
 import com.example.afpa.garageapp.model.Garage;
 
 import org.json.JSONArray;
@@ -14,32 +17,35 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
 /**
- * Created by afpa on 09/02/17.
+ * Created by afpa on 14/02/17.
  */
-// Class permettant de se connecter à l'API créée via SLIM pour réccupérer la liste de tous les garages
-public class FindGarages extends AsyncTask<String, Void, List<Garage>> {
+
+public class GetReviews extends AsyncTask<String, Void, List<Avis>> {
+
+    String globalnote;
+
+
     //url de l'API
-    private final String link = "http://10.105.49.23:8080/api/v1/garage";
+    private final String link = "http://10.105.49.23:8080/api/v1/garage/avis/";
 
     @Override
-    protected List<Garage> doInBackground(String... params) {
-        List<Garage> garages = new ArrayList<>();
+    protected List<Avis> doInBackground(String... params) {
+        List<Avis> avisLst = new ArrayList<>();
 
         StringBuilder sb = new StringBuilder();
         HttpURLConnection urlConnection;
 
 
         try {
-            URL url = new URL(link);
+            URL url = new URL(link + params[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(3000);
-            urlConnection.setConnectTimeout(3000);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(10000);
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("User-Agent", "GarageApp");
             //Type de données acceptées
@@ -66,29 +72,33 @@ public class FindGarages extends AsyncTask<String, Void, List<Garage>> {
             //Deconnection de l'url après construction/reccupération du JSON
             urlConnection.disconnect();
 
-            //Reccupération du tableau JSON transformé en string
-            JSONArray jsonArray = new JSONArray(sb.toString());
-
+            //Reccupération de l'objet json transformé en string
+            JSONObject jsonObject = new JSONObject(sb.toString());
+            //Reccupération du tableau d'avis reçu dans l'objet JSON
+            JSONArray jsonArray = jsonObject.getJSONArray("avis");
             //boucle pour parcourir le JSONArray
             for (int i = 0; i < jsonArray.length(); i++) {
                 //Reccupération de chaque objet JSON
                 JSONObject json = jsonArray.getJSONObject(i);
                 //Reccupération des données ontenues dans chaque objet JSON
-                int id = json.getInt("id");
-                String nom = json.getString("nom");
-                Double latitude = json.getDouble("latitude");
-                Double longitude = json.getDouble("longitude");
-                String concessionnaire = json.getString("concessionnaire");
+                int avis_id = json.getInt("avis_id");
+                int garage_id = json.getInt("garage_id");
+                String avis = json.getString("avis");
+
                 //Création d'un objet "garage"
-                Garage g = new Garage(id, nom, latitude, longitude, concessionnaire);
+                Avis a = new Avis(avis_id, garage_id, avis);
                 //Envoie de l'ogjet dans la list "garages"
-                garages.add(g);
+                avisLst.add(a);
             }
+            //Reccupération de la note moyenne du garage
+            globalnote = jsonObject.getString("note");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return garages;
+        return avisLst;
+    }
+
+    public String getGlobalnote() {
+        return globalnote;
     }
 }
-
-

@@ -1,4 +1,4 @@
-package com.example.afpa.garageapp;
+package com.example.afpa.myapplication;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
- * Instrumentation positveReviewsTab, which will execute on an Android device.
+ * Instrumentation test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
-        // Context of the app under positveReviewsTab.
+        // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.afpa.garageapp", appContext.getPackageName());
+        assertEquals("com.example.afpa.myapplication", appContext.getPackageName());
     }
 }

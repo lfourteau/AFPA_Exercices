@@ -1,11 +1,13 @@
 package com.example.afpa.garageapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.afpa.garageapp.database.FindGarages;
 import com.example.afpa.garageapp.model.Garage;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -26,9 +28,11 @@ public class MainActivityFragment
         GoogleMap.OnMarkerClickListener {
 
     private List<Garage> garages;
+    int garage_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         //Appelle la class FindGarage qui lance la connection à l'API pour réccupérer tous les garages
         FindGarages data = new FindGarages();
         data.execute();
@@ -56,15 +60,41 @@ public class MainActivityFragment
         googleMap.setOnMarkerClickListener(this);
 
         for (Garage gar : garages) {
+            //Reccupère le nom du concessionnaire
             String concName = gar.getConcessionnaire();
-            if (concName == "") {
+            //S'il n'y en un pas, indique "aucun"
+            if (concName.equals("")) {
                 concName = "Ancun";
             }
-            googleMap.addMarker(new MarkerOptions()                                 //Permet d'ajouter un marker
-                    .position(new LatLng(gar.getLatitude(), gar.getLongitude()))    //Définit la longitude et latitude
-                    .title(gar.getNom() + " " + gar.getId())                        //Définit le titre qui apparaitra dans le titre de l'info-bulle
-                    .snippet("concessionnaire :" + concName));                      //Définit le sous-titre qui apparaitra dans le titre de l'info-bulle
+
+            //Permet d'ajouter un marker
+            Marker marker = googleMap.addMarker(new MarkerOptions()
+                    //Définit la longitude et latitude
+                    .position(new LatLng(gar.getLatitude(), gar.getLongitude()))
+                    //Définit le titre qui apparaitra dans le titre de l'info-bulle
+                    .title(gar.getNom())
+                    //Définit le sous-titre qui apparaitra dans le titre de l'info-bulle
+                    .snippet("concessionnaire : " + concName));
+            //Ajoute un tag avec l'identifiant du garage dedans
+            marker.setTag(gar.getId());
         }
+
+        //Ecoute sur l'info window du marker selectionné
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                //Reccupère l'id du garage présent dans le tag
+                garage_id = (int) marker.getTag();
+                //Nouvelle Intent pour changer de vue
+                Intent openReviewsPage = new Intent(getActivity(), ReviewsPage.class);
+                //Envoie le nom et l'id du garage en extras vers la nouvelle vue
+                openReviewsPage.putExtra("nom", marker.getTitle());
+                openReviewsPage.putExtra("garage_id", "" + (int) marker.getTag());
+                //Démarre la nouvelle activité sur la nouvelle vue
+                startActivity(openReviewsPage);
+            }
+        });
     }
 
     @Override
