@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.example.afpa.garageapp.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,13 +36,20 @@ public class AvisAdapter extends ArrayAdapter<Avis> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.avisitems, parent, false);
         }
 
-        // Lookup view for data population
-        final TextView title = (TextView) convertView.findViewById(R.id.avisItemTxt);
+        // Ajoute l'avis
+        final TextView comment = (TextView) convertView.findViewById(R.id.avisItemTxt);
+        comment.setText(avis.getAvis());
 
-
-        title.setText(avis.getAvis());
-
+        //Ajoute la date (SimpleDateFormat sert à caster le String reçu en date sans h/min/sec)
+        final TextView postedDate = (TextView) convertView.findViewById(R.id.postedDateTxt);
+        String test = avis.getPostedDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date postedDateTmp = sdf.parse(test);
+            postedDate.setText("le " + sdf.format(postedDateTmp));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return convertView;
-
     }
 }

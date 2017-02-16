@@ -18,12 +18,13 @@ $app->group('/api/v1', function () use ($app) {
         $sth->bindParam("id", $args['id']);
         $sth->execute();
         $avis = $sth->fetchAll();
-        $sth2 = $this->db->prepare("SELECT ROUND(AVG(note),1) as globalNote FROM note where garage_id = :id");
+        $sth2 = $this->db->prepare("SELECT COUNT(DISTINCT note) as noteNumber, ROUND(AVG(note),1) as globalNote FROM note where garage_id = :id");
         $sth2->bindParam("id", $args['id']);
         $sth2->execute();
         $note = $sth2->fetchObject();
         $result = array();
         $result['avis'] = $avis;
+        $result['noteNumber'] = $note->noteNumber;
         $result['note'] = $note->globalNote;
 
         return $this->response->withJson($result);

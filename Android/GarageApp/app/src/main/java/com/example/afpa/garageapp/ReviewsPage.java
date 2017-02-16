@@ -43,6 +43,7 @@ public class ReviewsPage extends AppCompatActivity {
     private List<Avis> avisLst;
     String garage_id;
     String globalNote;
+    String noteNumber;
 
 
     @Override
@@ -51,6 +52,7 @@ public class ReviewsPage extends AppCompatActivity {
         setContentView(R.layout.reviews);
         //Réccupère les champs de la vue
         final TextView garageNameTtl = (TextView) findViewById(R.id.garageNameTtl);
+        final TextView noteNumberTxt = (TextView) findViewById(R.id.noteNumberTxt);
         final ListView avisListing = (ListView) findViewById(R.id.posReviewsLst);
         final RatingBar globalNoteRtBar = (RatingBar) findViewById(R.id.reviewsRatingBar);
         final RatingBar giveNoteRatingBar = (RatingBar) findViewById(R.id.giveNoteRatingBar);
@@ -71,6 +73,8 @@ public class ReviewsPage extends AppCompatActivity {
         try {
             avisLst = avis.get();
             globalNote = avis.getGlobalnote();
+            noteNumber = avis.getNoteNumber();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -86,6 +90,8 @@ public class ReviewsPage extends AppCompatActivity {
         //change la couleur des étoiles en jaune
         LayerDrawable stars = (LayerDrawable) globalNoteRtBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+        //Ajoute le nbr de note au champs text
+        noteNumberTxt.setText("(" + noteNumber + ")");
 
         //Ecoute sur la ratingBar
         giveNoteRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

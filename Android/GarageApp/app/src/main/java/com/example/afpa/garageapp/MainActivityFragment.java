@@ -1,14 +1,19 @@
 package com.example.afpa.garageapp;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
 import com.example.afpa.garageapp.database.FindGarages;
 import com.example.afpa.garageapp.model.Garage;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -16,6 +21,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -29,6 +36,7 @@ public class MainActivityFragment
 
     private List<Garage> garages;
     int garage_id;
+    private GoogleMap mMap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +60,7 @@ public class MainActivityFragment
 
         return rootView;
     }
+
 
     //Génère les markers sur la carte en fonction des données reçues dans la list de garages via l'API
     @Override
@@ -101,6 +110,5 @@ public class MainActivityFragment
     public boolean onMarkerClick(Marker marker) {
         return false;
     }
-
 
 }

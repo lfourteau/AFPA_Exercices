@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class GetReviews extends AsyncTask<String, Void, List<Avis>> {
 
     String globalnote;
+    String noteNumber;
 
 
     //url de l'API
@@ -84,14 +86,16 @@ public class GetReviews extends AsyncTask<String, Void, List<Avis>> {
                 int avis_id = json.getInt("avis_id");
                 int garage_id = json.getInt("garage_id");
                 String avis = json.getString("avis");
+                String postedDate = json.getString("parution_date");
 
                 //Création d'un objet "garage"
-                Avis a = new Avis(avis_id, garage_id, avis);
+                Avis a = new Avis(avis_id, garage_id, avis, postedDate);
                 //Envoie de l'ogjet dans la list "garages"
                 avisLst.add(a);
             }
             //Reccupération de la note moyenne du garage
             globalnote = jsonObject.getString("note");
+            noteNumber = jsonObject.getString("noteNumber");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,4 +105,10 @@ public class GetReviews extends AsyncTask<String, Void, List<Avis>> {
     public String getGlobalnote() {
         return globalnote;
     }
+
+    public String getNoteNumber() {
+        return noteNumber;
+    }
 }
+
+
