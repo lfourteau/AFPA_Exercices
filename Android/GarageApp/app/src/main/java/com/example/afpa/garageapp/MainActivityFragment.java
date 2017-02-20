@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.afpa.garageapp.database.FindGarages;
 import com.example.afpa.garageapp.model.Garage;
@@ -20,6 +21,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.ClusterManager;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +40,9 @@ public class MainActivityFragment
     private List<Garage> garages;
     int garage_id;
     private GoogleMap mMap;
+    private View rootView;
+    private MyItem clickedClusterItem;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +59,7 @@ public class MainActivityFragment
             e.printStackTrace();
         }
         //Créer la vue / fond google map
-        final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
         final MapFragment mapFragment = (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
@@ -67,7 +73,77 @@ public class MainActivityFragment
     public void onMapReady(GoogleMap googleMap) {
 //      Ajout d'un listener au clic sur un marqueur
         googleMap.setOnMarkerClickListener(this);
+        this.mMap = googleMap;
+        mClusterManager = new ClusterManager(this.getContext(), mMap);
+        mMap.setOnCameraIdleListener(mClusterManager);
+        mMap.setOnMarkerClickListener(mClusterManager);
+        mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
+        mMap.setOnInfoWindowClickListener(mClusterManager); //added
+        mClusterManager.setOnClusterItemInfoWindowClickListener(new ClusterManager.OnClusterItemInfoWindowClickListener<MyItem>() {
+            @Override
+            public void onClusterItemInfoWindowClick(MyItem myItem) {
+                //Cluster item InfoWindow clicked, set title as action
+                Intent i = new Intent(getActivity(), ReviewsPage.class);
+                i.putExtra("garage_id", "" + myItem.getGarage_id());
+                i.putExtra("garage_name", myItem.getTitle());
+                startActivity(i);
+            }
+        });
+        mClusterManager
+                .setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
+                    @Override
+                    public boolean onClusterItemClick(MyItem item) {
+                        clickedClusterItem = item;
+                        return false;
+                    }
+                });
 
+        addItems();
+
+        mClusterManager.getMarkerCollection().setOnInfoWindowAdapter(
+                new MyCustomAdapterForItems());
+
+
+    }
+    public class MyCustomAdapterForItems implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyCustomAdapterForItems() {
+            myContentsView = getActivity().getLayoutInflater().inflate(
+                    R.layout.info_window, null);
+        }
+
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+
+            TextView tvTitle = ((TextView) myContentsView.findViewById(R.id.txtTitle));
+            TextView tvSnippet = ((TextView) myContentsView.findViewById(R.id.txtSnippet));
+
+            tvTitle.setText(clickedClusterItem.getTitle());
+            tvSnippet.setText(clickedClusterItem.getSnippet());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+    }
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+    // Declare a variable for the cluster manager.
+    private ClusterManager<MyItem> mClusterManager;
+
+
+    private void addItems() {
+
+        //Parcourt la liste des garages reçus
         for (Garage gar : garages) {
             //Reccupère le nom du concessionnaire
             String concName = gar.getConcessionnaire();
@@ -76,39 +152,18 @@ public class MainActivityFragment
                 concName = "Ancun";
             }
 
-            //Permet d'ajouter un marker
-            Marker marker = googleMap.addMarker(new MarkerOptions()
-                    //Définit la longitude et latitude
-                    .position(new LatLng(gar.getLatitude(), gar.getLongitude()))
-                    //Définit le titre qui apparaitra dans le titre de l'info-bulle
-                    .title(gar.getNom())
-                    //Définit le sous-titre qui apparaitra dans le titre de l'info-bulle
-                    .snippet("concessionnaire : " + concName));
-            //Ajoute un tag avec l'identifiant du garage dedans
-            marker.setTag(gar.getId());
+            double lat = gar.getLatitude();
+            double lng = gar.getLongitude();
+            String nomGarage = gar.getNom();
+            String Concessionnaire = "Concessionnaire " + gar.getConcessionnaire();
+            int garage_id = gar.getId();
+
+            MyItem offsetItem = new MyItem(lat, lng, nomGarage, Concessionnaire, garage_id);
+            mClusterManager.addItem(offsetItem);
+
+
         }
-
-        //Ecoute sur l'info window du marker selectionné
-        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                //Reccupère l'id du garage présent dans le tag
-                garage_id = (int) marker.getTag();
-                //Nouvelle Intent pour changer de vue
-                Intent openReviewsPage = new Intent(getActivity(), ReviewsPage.class);
-                //Envoie le nom et l'id du garage en extras vers la nouvelle vue
-                openReviewsPage.putExtra("nom", marker.getTitle());
-                openReviewsPage.putExtra("garage_id", "" + (int) marker.getTag());
-                //Démarre la nouvelle activité sur la nouvelle vue
-                startActivity(openReviewsPage);
-            }
-        });
     }
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        return false;
-    }
 
 }

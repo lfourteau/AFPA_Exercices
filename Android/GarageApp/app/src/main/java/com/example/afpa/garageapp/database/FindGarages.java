@@ -25,7 +25,7 @@ import javax.net.ssl.HttpsURLConnection;
 // Class permettant de se connecter à l'API créée via SLIM pour réccupérer la liste de tous les garages
 public class FindGarages extends AsyncTask<String, Void, List<Garage>> {
     //url de l'API
-    private final String link = "http://10.105.49.23:8080/api/v1/garage";
+    private final String link = "http://10.105.49.35:8080/api/v1/garage";
 
     @Override
     protected List<Garage> doInBackground(String... params) {

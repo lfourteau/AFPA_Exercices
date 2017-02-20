@@ -40,7 +40,7 @@ public class SendNote extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... arg0) {
         try {
 
-            URL url = new URL("http://10.105.49.23:8080/api/v1/sendNote");
+            URL url = new URL("http://10.105.49.35:8080/api/v1/sendNote");
 
             JSONObject postDataParams = new JSONObject();
             postDataParams.put("note", note);

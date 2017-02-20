@@ -63,7 +63,7 @@ public class ReviewsPage extends AppCompatActivity {
 
 
         //Titre de la page
-        garageNameTtl.setText(extras.getString("nom"));
+        garageNameTtl.setText(extras.getString("garage_name"));
 
 
         //Reccupère la liste des avisitems selon l'id du garage (passé en paramètre du execute et reccupéré dans params dans la class GetReviews
