@@ -5,4 +5,21 @@ from challenge c
 INNER JOIN regate r ON c.cha_id = r.cha_id
 group BY c.cha_nom
 
+//Requete 2 : 
+select p.per_nom, p.per_prenom, par.par_num_ffv, r.reg_id, r.reg_date, v.voi_id, e.ski_id
+from personne p
+inner join participant par on p.per_id = par.per_id
+inner join equipage e on e.par_id = par.par_id
+inner join course c on c.cou_id = e.cou_id
+inner join regate r on r.reg_id = c.reg_id
+inner join PARTICIPER3 part on part.cou_id = c.cou_id
+inner join voilier v on v.voi_id = part.voi_id
+where r.reg_id = "1"
 
+==> Penser a ajouter un nom a voilier et modifier v.voi_id par ce champ
+==> penser à ajouter un nom aux régates et modifier r.reg_id par ce champ
+==> vérifier intérêt de la classe course
+
+//Requete 3 :
+==> etudier l'idée de supprimer la table course et de lier voilier à regate, comissaire à régate, participant/skipper à regate, resultat à regate via des tables intermédiaires (sauf resultat en direct). Normalement, regate_id doit passer dans ces tables et non l'inverse donc pas de champ en double.
+==> créer une table intermédiaire "comité" entre commissaire et course qui permet de definir les membres du comité de course pour chaque course 
