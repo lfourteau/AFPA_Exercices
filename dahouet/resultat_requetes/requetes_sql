@@ -1,0 +1,8 @@
+// Requete 1 : distance moyenne des regates par challenge
+
+SELECT c.cha_nom, AVG(r.reg_distance)
+from challenge c
+INNER JOIN regate r ON c.cha_id = r.cha_id
+group BY c.cha_nom
+
+
