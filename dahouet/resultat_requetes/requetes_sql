@@ -6,20 +6,21 @@ INNER JOIN regate r ON c.cha_id = r.cha_id
 group BY c.cha_nom
 
 //Requete 2 : 
-select p.per_nom, p.per_prenom, par.par_num_ffv, r.reg_id, r.reg_date, v.voi_id, e.ski_id
+select p.per_nom, p.per_prenom, par.par_numero_ffv, r.reg_date, r.reg_libellé, v.voi_nom, par_voi.voi_skipper_id
 from personne p
 inner join participant par on p.per_id = par.per_id
-inner join equipage e on e.par_id = par.par_id
-inner join course c on c.cou_id = e.cou_id
-inner join regate r on r.reg_id = c.reg_id
-inner join PARTICIPER3 part on part.cou_id = c.cou_id
-inner join voilier v on v.voi_id = part.voi_id
+inner join equipier e on par.par_id = e.par_id
+inner join participation_voilier par_voi on e.par_voi_id = par_voi.par_voi_id
+inner join regate r on par_voi.reg_id = r.reg_id
+inner join voilier v on par_voi.voi_id = v.voi_id
 where r.reg_id = "1"
 
-==> Penser a ajouter un nom a voilier et modifier v.voi_id par ce champ
-==> penser à ajouter un nom aux régates et modifier r.reg_id par ce champ
-==> vérifier intérêt de la classe course
 
 //Requete 3 :
-==> etudier l'idée de supprimer la table course et de lier voilier à regate, comissaire à régate, participant/skipper à regate, resultat à regate via des tables intermédiaires (sauf resultat en direct). Normalement, regate_id doit passer dans ces tables et non l'inverse donc pas de champ en double.
-==> créer une table intermédiaire "comité" entre commissaire et course qui permet de definir les membres du comité de course pour chaque course 
+select r.reg_libellé, r.reg_date, p.per_nom, p.per_prenom, com_com.cmt_com_nom
+from regate r
+inner join comite_course com_cou on com_cou.reg_id = r.reg_id
+inner join commissaire c on c.com_id = com_cou.com_id
+inner join comite_commissaire com_com on com_com.cmt_com_id = c.cmt_com_id
+inner join personne p on c.per_id = p.per_id
+where r.reg_date > curdate()
