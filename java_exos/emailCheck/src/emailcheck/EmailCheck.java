@@ -18,31 +18,31 @@ public class EmailCheck {
     public static void main(String[] args) {
         System.out.println("Veuillez entrer votre email");
         String email;
-        int atPosition = 0;
-        int firstPointPosition =0;
-        int lastPointPosition = 0;
         Boolean valid = false;
         while (valid == false) {
+            int atFirstPosition = 0;
+            int atSecondPosition = 0;
+            int lastPointPosition = 0;
             email = sc.nextLine();
             for (int i = 0; i < email.length(); i++) {
                 char x = email.charAt(i);
                 if (x == '@') {
-                    atPosition = i;
-                }
-                if (x == '.') {
-                    firstPointPosition = i;
-                    break;
+                    if (atFirstPosition == 0) {
+                        atFirstPosition = i;
+                    } else {
+                        atSecondPosition = i;
+                    }
                 }
                 if (x == '.') {
                     lastPointPosition = i;
                 }
             }
-            if (atPosition > 1 && (firstPointPosition > (atPosition+2)) && ((firstPointPosition - atPosition) > 2) && (email.length()-lastPointPosition)>2) {
+            if (atFirstPosition > 1 && ((lastPointPosition - atFirstPosition) > 2) && ((email.length() - lastPointPosition) > 2) && (atSecondPosition == 0)) {
                 System.out.println("email valide");
                 valid = true;
             }
-            if (valid == false) {
-                System.out.println("email invalide, eassaye encore");
+            if (valid == false){
+            System.out.println("email invalide, essaye encore");               
             }
         }
     }
