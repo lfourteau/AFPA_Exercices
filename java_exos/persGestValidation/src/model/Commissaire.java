@@ -23,7 +23,7 @@ public class Commissaire extends Personne {
 
     @Override
     public String toString() {
-        return  super.toString() + "est commissaire du comité de " + commite;
+        return  super.toString() + " est commissaire du comité de " + commite;
     }
     
 

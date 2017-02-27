@@ -18,7 +18,7 @@ public class Proprietaire extends Personne {
     
     @Override
     public String toString() {
-        return super.toString() + "est propriétaire";
+        return super.toString() + " est propriétaire";
     }
     
     

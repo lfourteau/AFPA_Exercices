@@ -27,17 +27,33 @@ public class Licencie extends Personne {
         this.anneeLicence = anneeLicence;
     }   
 
-    public double calculPoints(double points, Date date) {
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(date);
-        if (anneeLicence == calendar.get(Calendar.YEAR)) {
+    public double calculPoints(double points, Calendar annee) {
+        
+        if (anneeLicence == annee.get(Calendar.YEAR)) {
             nbPoints = pointsFFV + points;
+            System.out.println("Après ajout des derniers resultats, " + getPrenom() + " " + getNom() + " possède : " + nbPoints);
         } else {
-            System.out.println("la date ne corresponde à l'année de la licence");
+            System.out.print("La date ne corresponde à l'année de la licence pour " + getPrenom() + " " + getNom());
         }
         return nbPoints;
     }
 
+    public int getAnneeLicence() {
+        return anneeLicence;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+    
+    
+    
+    
+    
     @Override
     public String toString() {
         return super.toString() + " est un licencié. Il possède le numéro de licence n° " + numLicence + ". A l'instant présent, il est crédité de " + pointsFFV + " points au classement FFV";

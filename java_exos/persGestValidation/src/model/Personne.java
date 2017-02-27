@@ -31,9 +31,13 @@ public class Personne {
         return age;
     }
 
+    public int getAnneeNaissance() {
+        return anneeNaissance;
+    }  
+
     @Override
     public String toString() {
-        return prenom + " " + nom + "qui a " + calculAge();
+        return prenom + " " + nom + " qui a " + calculAge() + " ans";
     }
 
 }
