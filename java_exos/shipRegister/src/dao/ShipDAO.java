@@ -15,6 +15,7 @@ import model.Ship;
  * @author afpa
  */
 public class ShipDAO {
+
     public static void insert(Ship s) throws Exception {
         Connection connection = ConnectDB.getConnection();
 
@@ -22,8 +23,10 @@ public class ShipDAO {
 
         try {
             connection.setAutoCommit(false);
-            stmCreateFormation = connection.prepareStatement("INSERT INTO voilier (nom) VALUES (?);");
-            stmCreateFormation.setString(1, f.getNom());
+            stmCreateFormation = connection.prepareStatement("INSERT INTO voilier (voi_num_voile, cla_id, pro_id) VALUES (?,?,?);");
+            stmCreateFormation.setInt(1, s.getVoi_num_voile());
+            stmCreateFormation.setInt(2, s.getShipClass().getCla_id());
+            stmCreateFormation.setInt(3, s.getOwner().getPro_id());
             stmCreateFormation.execute();
 
             connection.commit();

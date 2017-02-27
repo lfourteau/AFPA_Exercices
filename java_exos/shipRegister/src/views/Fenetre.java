@@ -5,6 +5,16 @@
  */
 package views;
 
+import dao.OwnerDAO;
+import dao.ShipClassDAO;
+import dao.ShipDAO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Owner;
+import model.Ship;
+import model.ShipClass;
+
 /**
  *
  * @author afpa
@@ -16,6 +26,14 @@ public class Fenetre extends javax.swing.JFrame {
      */
     public Fenetre() {
         initComponents();
+        List<Owner> owners = OwnerDAO.findAll();
+        for (Owner own : owners){
+            shipOwnerCbBox.addItem(own);
+        }
+        List<ShipClass> shipClasses = ShipClassDAO.findAll();
+        for (ShipClass sc : shipClasses){
+        shipClassCbBox.addItem(sc);
+        }
     }
 
     /**
@@ -33,11 +51,11 @@ public class Fenetre extends javax.swing.JFrame {
         shipNameTxtFld = new javax.swing.JTextField();
         sailNumbTxtFldLbl = new javax.swing.JLabel();
         sailNumbTxtFld = new javax.swing.JTextField();
-        shipClassCmbBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        shipOwnerCmbBox = new javax.swing.JComboBox<>();
+        shipOwnerCbBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         validNewShipBtn = new javax.swing.JButton();
+        shipClassCbBox = new javax.swing.JComboBox<>();
         shipListPnl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,7 +63,7 @@ public class Fenetre extends javax.swing.JFrame {
 
         formPnl.setPreferredSize(new java.awt.Dimension(550, 626));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajout d'un nouveau navire", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajout d'un nouveau navire", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         shipNameTxtFldLbl.setText("Veuillez entrer le nom du navire");
         shipNameTxtFldLbl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -55,11 +73,14 @@ public class Fenetre extends javax.swing.JFrame {
         sailNumbTxtFldLbl.setText("Veuillez entrer le numéro de voile du voilier");
         sailNumbTxtFldLbl.setAlignmentX(5.0F);
 
-        shipClassCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1.setText("Veuillez selectionner le propritaire du navire");
 
-        shipOwnerCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        shipOwnerCbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        shipOwnerCbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shipOwnerCbBoxActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Veuillez entrer la classe du navire");
 
@@ -70,29 +91,32 @@ public class Fenetre extends javax.swing.JFrame {
             }
         });
 
+        shipClassCbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(shipOwnerCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(shipOwnerCbBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(shipNameTxtFld)
-                                .addComponent(sailNumbTxtFldLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                                .addComponent(sailNumbTxtFldLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(sailNumbTxtFld)
                                 .addComponent(shipNameTxtFldLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(shipClassCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(validNewShipBtn))
+                            .addComponent(shipClassCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(validNewShipBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,11 +132,11 @@ public class Fenetre extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(shipClassCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(shipOwnerCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(shipOwnerCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(shipClassCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(validNewShipBtn)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -155,8 +179,25 @@ public class Fenetre extends javax.swing.JFrame {
 
     private void validNewShipBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validNewShipBtnActionPerformed
         String shipName = shipNameTxtFld.getText();
-        int numVoile = Integer.parseInt(sailNumbTxtFld.getText());
+        int sailNum = Integer.parseInt(sailNumbTxtFld.getText());
+        Owner owner = (Owner) shipOwnerCbBox.getSelectedItem();
+        ShipClass sc = (ShipClass) shipClassCbBox.getSelectedItem();
+        
+        Ship ship = new Ship(sailNum, shipName, sc, owner);
+        
+        try {
+            ShipDAO.insert(ship);
+            shipNameTxtFld.setText(null);
+            sailNumbTxtFld.setText(null);
+        } catch (Exception ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_validNewShipBtnActionPerformed
+
+    private void shipOwnerCbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shipOwnerCbBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shipOwnerCbBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,11 +241,11 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField sailNumbTxtFld;
     private javax.swing.JLabel sailNumbTxtFldLbl;
-    private javax.swing.JComboBox<String> shipClassCmbBox;
+    private javax.swing.JComboBox<String> shipClassCbBox;
     private javax.swing.JPanel shipListPnl;
     private javax.swing.JTextField shipNameTxtFld;
     private javax.swing.JLabel shipNameTxtFldLbl;
-    private javax.swing.JComboBox<String> shipOwnerCmbBox;
+    private javax.swing.JComboBox<String> shipOwnerCbBox;
     private javax.swing.JButton validNewShipBtn;
     // End of variables declaration//GEN-END:variables
 }
