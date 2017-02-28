@@ -18,6 +18,9 @@ public class Owner extends Personne {
         super(per_nom, per_prenom);
         this.pro_id = pro_id;
     }
+    public Owner(String per_nom, String per_prenom) {
+        super(per_nom, per_prenom);      
+    }    
 
     public int getPro_id() {
         return pro_id;
@@ -42,6 +45,31 @@ public class Owner extends Personne {
     public void setPers_id(int pers_id) {
         this.pers_id = pers_id;
     }
+
+    public String getPer_nom() {
+        return per_nom;
+    }
+
+    public void setPer_nom(String per_nom) {
+        this.per_nom = per_nom;
+    }
+
+    public String getPer_prenom() {
+        return per_prenom;
+    }
+
+    public void setPer_prenom(String per_prenom) {
+        this.per_prenom = per_prenom;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+    
+    
 
   
     

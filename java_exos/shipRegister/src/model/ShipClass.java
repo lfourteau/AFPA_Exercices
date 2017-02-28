@@ -19,6 +19,10 @@ public class ShipClass {
         this.cla_id = cla_id;
         this.cla_nom = cla_nom;
     }
+    
+    public ShipClass(String cla_nom) {        
+        this.cla_nom = cla_nom;
+    }
 
     public int getCla_id() {
         return cla_id;
@@ -50,6 +54,11 @@ public class ShipClass {
 
     public void setSer_id(int ser_id) {
         this.ser_id = ser_id;
+    }
+
+    @Override
+    public String toString() {
+        return cla_nom;
     }
     
     

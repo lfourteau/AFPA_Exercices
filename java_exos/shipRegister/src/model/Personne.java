@@ -21,6 +21,11 @@ public class Personne {
         this.per_nom = per_nom;
         this.per_prenom = per_prenom;
     }
+
+    @Override
+    public String toString() {
+        return per_prenom + " " + per_nom;
+    }
     
     
 }

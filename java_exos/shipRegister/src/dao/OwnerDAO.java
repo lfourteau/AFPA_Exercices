@@ -33,10 +33,10 @@ public class OwnerDAO {
 
             while (rs.next()) {
                 int pro_id = rs.getInt("pro_id");
-                String pro_prenom = rs.getString("per_prenom");
                 String pro_nom = rs.getString("per_nom");
+                String pro_prenom = rs.getString("per_prenom");
 
-                Owner o = new Owner(pro_id, pro_prenom, pro_nom);
+                Owner o = new Owner(pro_id, pro_nom, pro_prenom);
 
                 owners.add(o);
             }

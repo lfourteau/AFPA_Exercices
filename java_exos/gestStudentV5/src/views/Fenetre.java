@@ -652,7 +652,6 @@ public class Fenetre extends javax.swing.JFrame {
             NomStagEditFieldTxt.setText(null);
             PrenomStagEditFieldTxt.setText(null);
             FormationListEditCbbox.removeAllItems();
-            System.out.println(stagiaireTable.getRowCount());
             stagiaireTable.removeStagiaire(stagiaire);
             System.out.println(stagiaireTable.getRowCount());
             succeedActionsLbl.setText("Stagiaire supprimé avec succès");

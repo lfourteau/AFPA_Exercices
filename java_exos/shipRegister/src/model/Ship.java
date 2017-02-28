@@ -17,7 +17,7 @@ public class Ship {
     ShipClass shipClass;
     Owner owner;
 
-    public Ship(int voi_num_voile, String voi_nom,ShipClass shipClass, Owner owner) {       
+    public Ship(int voi_num_voile, String voi_nom, ShipClass shipClass, Owner owner) {       
         this.voi_num_voile = voi_num_voile;
         this.voi_nom = voi_nom;
         this.shipClass = shipClass;
