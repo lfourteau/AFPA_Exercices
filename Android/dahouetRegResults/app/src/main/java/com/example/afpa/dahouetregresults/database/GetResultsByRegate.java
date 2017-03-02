@@ -3,6 +3,7 @@ package com.example.afpa.dahouetregresults.database;
 import android.os.AsyncTask;
 
 import com.example.afpa.dahouetregresults.model.Regate;
+import com.example.afpa.dahouetregresults.model.Result;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,29 +22,23 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
- * Created by afpa on 28/02/17.
+ * Created by afpa on 02/03/17.
  */
 
-public class GetRegates extends AsyncTask<String, Void, List<Regate>> {
-
-    @Override
-    protected void onPreExecute() {
-
-    }
-
+public class GetResultsByRegate extends AsyncTask<String, Void, List<Result>> {
     //url de l'API
-    private final String link = "http://10.105.49.67:8080/api/v1/regates";
+    private final String link = "http://10.105.49.67:8080/api/v1/result/regate/";
 
     @Override
-    protected List<Regate> doInBackground(String... params) {
-        List<Regate> RegateLst = new ArrayList<>();
+    protected List<Result> doInBackground(String... params) {
+        List<Result> resLst = new ArrayList<>();
 
         StringBuilder sb = new StringBuilder();
         HttpURLConnection urlConnection;
 
 
         try {
-            URL url = new URL(link);
+            URL url = new URL(link + params[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000);
             urlConnection.setConnectTimeout(10000);
@@ -81,25 +76,20 @@ public class GetRegates extends AsyncTask<String, Void, List<Regate>> {
                 //Reccupération de chaque objet JSON
                 JSONObject json = jsonArray.getJSONObject(i);
                 //Reccupération des données ontenues dans chaque objet JSON
-                int reg_id = json.getInt("reg_id");
                 String reg_libelle = json.getString("reg_libelle");
-                //Reccupération date de la régate
-                String reg_date_string = json.getString("reg_date");
-                SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
-                Date reg_Date = sdf.parse(reg_date_string);
-                double reg_distance = json.getDouble("reg_distance");
-                int cha_id = json.getInt("cha_id");
-
-                //Création d'un objet "regate"
-                Regate r = new Regate(reg_id, reg_libelle, reg_Date, reg_distance, cha_id);
-                //Envoie de l'ogjet dans la list "garages"
-                RegateLst.add(r);
+                int res_place = json.getInt("res_points");
+                String nom_voilier = json.getString("voi_nom");
+                int num_voile = json.getInt("voi_num_voile");
+                String skipper_prenom = json.getString("per_prenom");
+                String skipper_nom = json.getString("per_nom");
+                String skipper = skipper_prenom + " " + skipper_nom;
+                //Création de objet "result"
+                Result res = new Result(reg_libelle, res_place, nom_voilier, num_voile, skipper);
+                resLst.add(res);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return RegateLst;
+        return resLst;
     }
 }
-

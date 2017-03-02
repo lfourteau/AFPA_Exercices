@@ -13,6 +13,7 @@ public class Regate {
     Date reg_date;
     double reg_distance;
     int cha_id;
+    String cha_nom;
 
     public Regate() {
     }
@@ -23,6 +24,18 @@ public class Regate {
         this.reg_date = reg_date;
         this.reg_distance = reg_distance;
         this.cha_id = cha_id;
+    }
+    public Regate(int reg_id, String reg_libelle, Date reg_date, double reg_distance, String cha_nom) {
+        this.reg_id = reg_id;
+        this.reg_libelle = reg_libelle;
+        this.reg_date = reg_date;
+        this.reg_distance = reg_distance;
+        this.cha_nom = cha_nom;
+    }
+
+
+    public String getCha_nom() {
+        return cha_nom;
     }
 
     public int getReg_id() {

@@ -26,7 +26,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class FindGarages extends AsyncTask<String, Void, List<Garage>> {
 
     //url de l'API
-    private final String link = "http://10.105.49.35:8080/api/v1/garage";
+    private final String link = "http://10.105.49.67:8081/api/v1/garage";
 
     @Override
     protected List<Garage> doInBackground(String... params) {

@@ -21,29 +21,23 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 /**
- * Created by afpa on 28/02/17.
+ * Created by afpa on 02/03/17.
  */
 
-public class GetRegates extends AsyncTask<String, Void, List<Regate>> {
-
-    @Override
-    protected void onPreExecute() {
-
-    }
-
+public class GetRegateById extends AsyncTask<String, Void, Regate> {
     //url de l'API
-    private final String link = "http://10.105.49.67:8080/api/v1/regates";
+    private final String link = "http://10.105.49.67:8080/api/v1/regate/";
 
     @Override
-    protected List<Regate> doInBackground(String... params) {
-        List<Regate> RegateLst = new ArrayList<>();
+    protected Regate doInBackground(String... params) {
+        Regate reg = new Regate();
 
         StringBuilder sb = new StringBuilder();
         HttpURLConnection urlConnection;
 
 
         try {
-            URL url = new URL(link);
+            URL url = new URL(link + params[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000);
             urlConnection.setConnectTimeout(10000);
@@ -88,18 +82,18 @@ public class GetRegates extends AsyncTask<String, Void, List<Regate>> {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
                 Date reg_Date = sdf.parse(reg_date_string);
                 double reg_distance = json.getDouble("reg_distance");
-                int cha_id = json.getInt("cha_id");
+                String cha_nom = json.getString("cha_nom");
 
-                //Création d'un objet "regate"
-                Regate r = new Regate(reg_id, reg_libelle, reg_Date, reg_distance, cha_id);
-                //Envoie de l'ogjet dans la list "garages"
-                RegateLst.add(r);
+                //Création de objet "regate"
+                reg = new Regate(reg_id, reg_libelle, reg_Date, reg_distance, cha_nom);
+
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return RegateLst;
+        return reg;
     }
-}
 
+}

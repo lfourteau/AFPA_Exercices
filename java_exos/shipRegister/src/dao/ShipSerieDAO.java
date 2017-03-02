@@ -12,32 +12,33 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Owner;
+import model.Ship;
 import model.ShipClass;
+import model.ShipSerie;
 
 /**
  *
- * @author lucas
+ * @author afpa
  */
-public class ShipClassDAO {
-    public static List<ShipClass> findBySerieId(int ser_id) {
-
+public class ShipSerieDAO {
+    public static List<ShipSerie> findAll() {
         Connection connection = ConnectDB.getConnection();
         Statement stm;  
-        ArrayList<ShipClass> shipClasses = new ArrayList();
+        ArrayList<ShipSerie> shipSeries = new ArrayList();
         try {
             stm = connection.createStatement();
-            String sql = "select * from classe where ser_id =" + ser_id;
+            String sql = "select * from serie";
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                int cla_id = rs.getInt("cla_id");
-                String cla_nom = rs.getString("cla_nom");
-                ShipClass sc = new ShipClass(cla_id, cla_nom);
-                shipClasses.add(sc);
+                int ser_id = rs.getInt("ser_id");
+                String ser_nom = rs.getString("ser_nom");
+                ShipSerie ss = new ShipSerie(ser_id, ser_nom);
+                shipSeries.add(ss);
             }
             rs.close();
         } catch (SQLException e) {
             throw new RuntimeException();
         }
-        return shipClasses;
-    }
+        return shipSeries;
+    }    
 }

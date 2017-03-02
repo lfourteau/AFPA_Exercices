@@ -2,6 +2,140 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Container class="javax.swing.JDialog" name="addOwnerDlg">
+      <Properties>
+        <Property name="focusCycleRoot" type="boolean" value="false"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="dialogueTitleLbl" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="97" pref="97" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nauticalClubCbBox" alignment="0" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="addOwnNameLbl" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
+                              <Component id="addOwnFirstNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="addOwnBirthDateLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="addOwnBirthDateTxtFld" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="addOwnNameTxtFld" alignment="0" pref="279" max="32767" attributes="0"/>
+                                  <Component id="addOwnFirstNameTxtFld" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="nauticalClubCbBoxLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                          <Component id="addOwnValidBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="dialogueTitleLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="addOwnNameLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addOwnNameTxtFld" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addOwnFirstNameLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addOwnFirstNameTxtFld" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addOwnBirthDateLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addOwnBirthDateTxtFld" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <Component id="nauticalClubCbBoxLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="nauticalClubCbBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <Component id="addOwnValidBtn" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="dialogueTitleLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Formulaire d&apos;ajout d&apos;un nouveau propri&#xe9;taire"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="addOwnNameLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Veuillez entrer le nom"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="addOwnNameTxtFld">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOwnNameTxtFldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="addOwnFirstNameLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Veuillez entrer le prenom"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="addOwnFirstNameTxtFld">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOwnFirstNameTxtFldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="addOwnBirthDateLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Veuillez entrer la date de naissance (yyyy-mm-dd)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="addOwnBirthDateTxtFld">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOwnBirthDateTxtFldActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="nauticalClubCbBoxLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Veuillez selectionner le club du propri&#xe9;taire"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="nauticalClubCbBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <SerializedValue value="-84,-19,0,5,115,114,0,78,111,114,103,46,110,101,116,98,101,97,110,115,46,109,111,100,117,108,101,115,46,102,111,114,109,46,82,65,68,67,111,110,110,101,99,116,105,111,110,80,114,111,112,101,114,116,121,69,100,105,116,111,114,36,82,65,68,67,111,110,110,101,99,116,105,111,110,68,101,115,105,103,110,86,97,108,117,101,2,10,-70,90,-35,-97,-57,100,2,0,7,73,0,4,116,121,112,101,76,0,10,109,101,116,104,111,100,78,97,109,101,116,0,18,76,106,97,118,97,47,108,97,110,103,47,83,116,114,105,110,103,59,76,0,12,112,114,111,112,101,114,116,121,78,97,109,101,113,0,126,0,1,76,0,16,114,97,100,67,111,109,112,111,110,101,110,116,78,97,109,101,113,0,126,0,1,76,0,16,114,101,113,117,105,114,101,100,84,121,112,101,78,97,109,101,113,0,126,0,1,76,0,8,117,115,101,114,67,111,100,101,113,0,126,0,1,76,0,5,118,97,108,117,101,113,0,126,0,1,120,112,0,0,0,2,112,112,112,112,116,0,0,112"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nauticalClubCbBoxActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;NauticalClub&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="addOwnValidBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Valider"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOwnValidBtnActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -62,8 +196,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" pref="385" max="-2" attributes="0"/>
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -72,7 +206,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                  <EmptySpace pref="86" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,31 +227,27 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="shipOwnerCbBox" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="shipNameTxtFld" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="sailNumbTxtFldLbl" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="sailNumbTxtFld" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="shipNameTxtFldLbl" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" min="-2" pref="367" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jLabel1" alignment="0" min="-2" pref="367" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                                      <Component id="validNewShipBtn" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="shipClassCbBox" alignment="0" min="-2" pref="371" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                              <Component id="validNewShipBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="shipClassCbBox" alignment="1" max="32767" attributes="0"/>
+                          <Component id="shipClasseCbBoxLbl" alignment="0" min="-2" pref="367" max="-2" attributes="0"/>
+                          <Component id="sailNumbTxtFld" alignment="1" max="32767" attributes="0"/>
+                          <Component id="sailNumbTxtFldLbl" alignment="1" pref="371" max="32767" attributes="0"/>
+                          <Component id="shipNameTxtFld" alignment="1" max="32767" attributes="0"/>
+                          <Component id="shipNameTxtFldLbl" alignment="1" max="32767" attributes="0"/>
+                          <Component id="shipSerieCbBoxLbl" alignment="0" min="-2" pref="367" max="-2" attributes="0"/>
+                          <Component id="shipSerieCbBox" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="shipOwnerCbBox" min="-2" pref="277" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="addNewOwnerBtn" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="shipOwnerCbBoxLbl" alignment="0" min="-2" pref="367" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -133,16 +263,22 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="sailNumbTxtFld" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="shipOwnerCbBoxLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="shipOwnerCbBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="shipOwnerCbBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addNewOwnerBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="shipSerieCbBoxLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="shipSerieCbBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="shipClasseCbBoxLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="shipClassCbBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="validNewShipBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -167,9 +303,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="sailNumbTxtFld">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="shipOwnerCbBoxLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Veuillez selectionner le propritaire du navire"/>
+                <Property name="text" type="java.lang.String" value="Veuillez selectionner le propritaire du voilier"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="shipOwnerCbBox">
@@ -185,18 +321,37 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Owner&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JButton" name="addNewOwnerBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Veuillez entrer la classe du navire"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="validNewShipBtn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Valider"/>
+                <Property name="text" type="java.lang.String" value="Ajouter"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="validNewShipBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNewOwnerBtnActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="shipSerieCbBoxLbl">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Veuillez selectionner la s&#xe9;rie du voilier"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="shipSerieCbBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <SerializedValue value="-84,-19,0,5,115,114,0,78,111,114,103,46,110,101,116,98,101,97,110,115,46,109,111,100,117,108,101,115,46,102,111,114,109,46,82,65,68,67,111,110,110,101,99,116,105,111,110,80,114,111,112,101,114,116,121,69,100,105,116,111,114,36,82,65,68,67,111,110,110,101,99,116,105,111,110,68,101,115,105,103,110,86,97,108,117,101,2,10,-70,90,-35,-97,-57,100,2,0,7,73,0,4,116,121,112,101,76,0,10,109,101,116,104,111,100,78,97,109,101,116,0,18,76,106,97,118,97,47,108,97,110,103,47,83,116,114,105,110,103,59,76,0,12,112,114,111,112,101,114,116,121,78,97,109,101,113,0,126,0,1,76,0,16,114,97,100,67,111,109,112,111,110,101,110,116,78,97,109,101,113,0,126,0,1,76,0,16,114,101,113,117,105,114,101,100,84,121,112,101,78,97,109,101,113,0,126,0,1,76,0,8,117,115,101,114,67,111,100,101,113,0,126,0,1,76,0,5,118,97,108,117,101,113,0,126,0,1,120,112,0,0,0,2,112,112,112,112,116,0,0,112"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="shipSerieCbBoxItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shipSerieCbBoxActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;ShipSerie&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="shipClasseCbBoxLbl">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Veuillez entrer la classe du voilier"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="shipClassCbBox">
               <Properties>
@@ -210,6 +365,14 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;ShipClass&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="validNewShipBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valider"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="validNewShipBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

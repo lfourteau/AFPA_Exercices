@@ -11,33 +11,42 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.NauticalClub;
 import model.Owner;
-import model.ShipClass;
 
 /**
  *
- * @author lucas
+ * @author afpa
  */
-public class ShipClassDAO {
-    public static List<ShipClass> findBySerieId(int ser_id) {
+public class NauticalClubDAO {
+    public static List<NauticalClub> findAll() {
 
         Connection connection = ConnectDB.getConnection();
         Statement stm;  
-        ArrayList<ShipClass> shipClasses = new ArrayList();
+
+        ArrayList<NauticalClub> clubs = new ArrayList();
+
         try {
             stm = connection.createStatement();
-            String sql = "select * from classe where ser_id =" + ser_id;
+
+            String sql = "select * from club_nautique";
             ResultSet rs = stm.executeQuery(sql);
+
             while (rs.next()) {
-                int cla_id = rs.getInt("cla_id");
-                String cla_nom = rs.getString("cla_nom");
-                ShipClass sc = new ShipClass(cla_id, cla_nom);
-                shipClasses.add(sc);
+                int clu_id = rs.getInt("clu_id");
+                String clu_nom = rs.getString("clu_nom");
+               
+
+                NauticalClub nc = new NauticalClub(clu_id, clu_nom);
+
+                clubs.add(nc);
             }
             rs.close();
+
         } catch (SQLException e) {
             throw new RuntimeException();
         }
-        return shipClasses;
+
+        return clubs;
     }
 }

@@ -33,7 +33,7 @@ public class GetReviews extends AsyncTask<String, Void, List<Avis>> {
 
 
     //url de l'API
-    private final String link = "http://10.105.49.35:8080/api/v1/garage/avis/";
+    private final String link = "http://10.105.49.67:8081/api/v1/garage/avis/";
 
     @Override
     protected List<Avis> doInBackground(String... params) {

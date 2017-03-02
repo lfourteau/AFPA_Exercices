@@ -5,7 +5,7 @@
  */
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -21,6 +21,13 @@ public class Personne {
         this.per_nom = per_nom;
         this.per_prenom = per_prenom;
     }
+
+    public Personne(String per_nom, String per_prenom, Date per_date) {
+        this.per_nom = per_nom;
+        this.per_prenom = per_prenom;
+        this.per_date = per_date;
+    }   
+    
 
     @Override
     public String toString() {

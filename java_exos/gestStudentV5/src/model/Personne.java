@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author afpa
@@ -13,13 +15,14 @@ public class Personne {
     int id;
     String nom;
     String prenom;
+   
 
     //Constructeur d'objet
     public Personne(int id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-    }
+    }  
     
     public Personne(String nom, String prenom) {
         this.nom = nom;

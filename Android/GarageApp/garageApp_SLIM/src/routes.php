@@ -51,6 +51,5 @@ $app->group('/api/v1', function () use ($app) {
         $sth->execute();
         $avis->id = $this->db->lastInsertId();
         return $this->response->withJson($avis)->withStatus(201);
-    });
-    
+    });    
 });

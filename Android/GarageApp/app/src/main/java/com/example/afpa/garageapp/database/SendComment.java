@@ -40,7 +40,7 @@ public class SendComment extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... arg0) {
         try {
 
-            URL url = new URL("http://10.105.49.35:8080/api/v1/sendAvis");
+            URL url = new URL("http://10.105.49.67:8081/api/v1/sendAvis");
 
             JSONObject postDataParams = new JSONObject();
             postDataParams.put("garage_id", garage_id);
