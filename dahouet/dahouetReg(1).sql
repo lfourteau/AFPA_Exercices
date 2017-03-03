@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2017 at 04:58 PM
+-- Generation Time: Mar 03, 2017 at 12:04 PM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.2
 
@@ -180,19 +180,24 @@ INSERT INTO `comite_commissaire` (`cmt_com_id`, `cmt_com_nom`) VALUES
 --
 
 CREATE TABLE `comite_course` (
-  `cmt_cou_id` int(11) NOT NULL,
-  `reg_id` int(11) NOT NULL,
-  `com_id` int(11) NOT NULL
+  `com_id` int(11) NOT NULL,
+  `reg_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comite_course`
 --
 
-INSERT INTO `comite_course` (`cmt_cou_id`, `reg_id`, `com_id`) VALUES
-(1, 3, 3),
-(2, 5, 2),
-(3, 2, 3);
+INSERT INTO `comite_course` (`com_id`, `reg_id`) VALUES
+(2, 3),
+(3, 3),
+(1, 2),
+(3, 1),
+(2, 13),
+(2, 20),
+(3, 13),
+(1, 15),
+(3, 16);
 
 -- --------------------------------------------------------
 
@@ -315,7 +320,8 @@ INSERT INTO `personne` (`per_id`, `per_nom`, `per_prenom`, `per_date_naissance`)
 (9, 'Lelu', 'Florent', '2017-02-16'),
 (10, 'Jezecquel', 'Margaux', '2017-02-02'),
 (11, 'Goyot', 'Gaetane', '2017-02-08'),
-(12, 'Bur', 'Nathalie', '2017-02-02');
+(12, 'Bur', 'Nathalie', '2017-02-02'),
+(19, 'qzdzqdqz', 'dqzdzqdzqd', '1221-12-21');
 
 -- --------------------------------------------------------
 
@@ -336,7 +342,9 @@ CREATE TABLE `proprietaire` (
 INSERT INTO `proprietaire` (`pro_id`, `per_id`, `clu_id`) VALUES
 (4, 7, 3),
 (5, 11, 4),
-(6, 12, 5);
+(6, 12, 5),
+(10, 8, 2),
+(13, 19, 1);
 
 -- --------------------------------------------------------
 
@@ -530,7 +538,8 @@ INSERT INTO `voilier` (`voi_id`, `voi_num_voile`, `voi_nom`, `cla_id`, `pro_id`)
 (15, 546466, 'L\'héliotrope', 12, 5),
 (16, 65156, 'qzdqzd', 6, 4),
 (17, 556465, 'dqsdsq', 6, 4),
-(18, 65464, 'sqcqssc', 8, 4);
+(18, 65464, 'sqcqssc', 8, 4),
+(19, 5616516, 'qzdqzdqzd', 14, 6);
 
 --
 -- Indexes for dumped tables
@@ -565,7 +574,6 @@ ALTER TABLE `comite_commissaire`
 -- Indexes for table `comite_course`
 --
 ALTER TABLE `comite_course`
-  ADD PRIMARY KEY (`cmt_cou_id`),
   ADD KEY `reg_id` (`reg_id`),
   ADD KEY `com_id` (`com_id`);
 
@@ -670,11 +678,6 @@ ALTER TABLE `club_nautique`
 ALTER TABLE `comite_commissaire`
   MODIFY `cmt_com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `comite_course`
---
-ALTER TABLE `comite_course`
-  MODIFY `cmt_cou_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
 -- AUTO_INCREMENT for table `commissaire`
 --
 ALTER TABLE `commissaire`
@@ -698,17 +701,17 @@ ALTER TABLE `participation_voilier`
 -- AUTO_INCREMENT for table `personne`
 --
 ALTER TABLE `personne`
-  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `proprietaire`
 --
 ALTER TABLE `proprietaire`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `regate`
 --
 ALTER TABLE `regate`
-  MODIFY `reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `resultat`
 --
@@ -723,7 +726,7 @@ ALTER TABLE `serie`
 -- AUTO_INCREMENT for table `voilier`
 --
 ALTER TABLE `voilier`
-  MODIFY `voi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `voi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- Constraints for dumped tables
 --
@@ -738,8 +741,8 @@ ALTER TABLE `classe`
 -- Constraints for table `comite_course`
 --
 ALTER TABLE `comite_course`
-  ADD CONSTRAINT `comite_course_ibfk_1` FOREIGN KEY (`reg_id`) REFERENCES `regate` (`reg_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `comite_course_ibfk_2` FOREIGN KEY (`com_id`) REFERENCES `commissaire` (`com_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comite_course_ibfk_1` FOREIGN KEY (`com_id`) REFERENCES `commissaire` (`com_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comite_course_ibfk_2` FOREIGN KEY (`reg_id`) REFERENCES `regate` (`reg_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `commissaire`
